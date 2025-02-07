@@ -42,7 +42,4 @@ java SAV a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<p
    java SAV a=s t=n o=za in=m v="4,2,6,0" s=500
    ```
 
-3. **QuickSort with a random list of 10 numbers (ascending):**
-   ```bash
-   java SAV a=q t=n o=az in=r v="" s=500
-   ```
+
