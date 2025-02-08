@@ -15,6 +15,7 @@ public enum Texts {
                     ██    ██ ██     ██ ██    ██    ██    ██     ██ ██     ██\s
             """
     ),
+    TITLE_APP("Sorting Algorithm Visualizer"),
     LOADING("""
   _                     _ _                   
  | |                   | (_)                  

@@ -32,11 +32,12 @@ public class App {
 
         argumentHandler.verify();
         configs = argumentHandler.createAppConfigs();
+        vision.setConfigs(configs);
 
         vision.loading();
         vision.sleep(500);
         vision.clear(100);
 
-//        vision.renderMatrix(configs.inputList());
+        vision.renderVisualizer();
     }
 }

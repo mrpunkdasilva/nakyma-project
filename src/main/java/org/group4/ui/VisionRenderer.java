@@ -1,5 +1,6 @@
 package org.group4.ui;
 
+import org.group4.config.AppConfigs;
 import org.group4.handlers.InputListHandler;
 import org.group4.interfaces.IVisionRenderer;
 import org.group4.utils.Aengus;
@@ -18,6 +19,8 @@ public class VisionRenderer implements IVisionRenderer {
     private final Mercury mercury = new Mercury();
     private final Scanner scanner = new Scanner(System.in);
     private final InputListHandler listHandler = new InputListHandler();
+    private AppConfigs configs;
+
 
     /**
      * Renders a message asking the user to press Enter to start the application.
@@ -56,18 +59,44 @@ public class VisionRenderer implements IVisionRenderer {
         renderPressStart();
     }
 
-    public void renderMatrix(List<String> inputMatrix) {
+    public void renderVisualizer() {
         renderHeader();
 
-        for (String matrix : inputMatrix) {
-            System.out.println(matrix);
+        if (configs.typeList().equalsIgnoreCase("c")) {
+            Character[] charArray = configs.inputList().stream()
+                    .map(str -> str.charAt(0))
+                    .toArray(Character[]::new);
+            SortingVisualizer<Character> visualizer = new SortingVisualizer<>(charArray, configs.s());
+            visualizer.draw();
+        } else {
+            Integer[] intArray = configs.inputList().stream()
+                   .map(Integer::parseInt)
+                   .toArray(Integer[]::new);
+            SortingVisualizer<Integer> visualizer = new SortingVisualizer<>(intArray, configs.s());
+            visualizer.draw();
         }
+
     }
 
+    // TODO: REFATORAR ESTE METODO
     private void renderHeader() {
-        mercury.showMessage("""
-                
-                """);
+        // Cabeçalho da tabela
+        String header = """
+                +---------------------------------------------------+
+                | Configurações da Aplicação                        |
+                +-------------------+-------------------------------+
+                | Parâmetro         | Valor                         |
+                +-------------------+-------------------------------+
+                """;
+
+        String typeList = String.format("| %-17s | %-29s ", "Tipo de Lista", configs.getTypeListName());
+        String alg = String.format("| %-17s | %-29s  ", "Algoritmo", configs.getAlgorithmName());
+        String inputList = String.format("| %-17s | %-29s ", "Lista de Entrada", configs.inputList());
+        String speed = String.format("| %-17s | %-29s ", "Velocidade", configs.s() + "ms");
+        String footer = "+-------------------+-------------------------------+";
+
+        // Exibe a tabela completa
+        mercury.showMessage(header + typeList + "\n" + alg + "\n"+ inputList + "\n" + speed + "\n" + footer);
     }
 
     /**
@@ -112,4 +141,7 @@ public class VisionRenderer implements IVisionRenderer {
         }
     }
 
+    public void setConfigs(AppConfigs configs) {
+        this.configs = configs;
+    }
 }
