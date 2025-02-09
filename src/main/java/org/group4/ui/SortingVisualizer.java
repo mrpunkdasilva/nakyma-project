@@ -1,6 +1,5 @@
 package org.group4.ui;
 
-import org.group4.sortAlgorithms.BubbleSort;
 import org.group4.values.Texts;
 
 import javax.swing.*;
@@ -80,9 +79,9 @@ public class SortingVisualizer<T extends Comparable<T>> extends JPanel {
         frame.setVisible(true);
 
         // Executa a ordenação em uma thread separada
-        new Thread(() -> {
-            new BubbleSort<T>().sort(array, this);
-        }).start();
+//        new Thread(() -> {
+//            new BubbleSort<T>().sort(array, this);
+//        }).start();
     }
 
     // Método para atualizar o array e repintar a tela

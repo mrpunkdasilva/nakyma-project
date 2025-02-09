@@ -1,13 +1,13 @@
 package org.group4.sortAlgorithms;
 
+import org.group4.base.Algorithm;
 import org.group4.config.AppConfigs;
+
+
 import java.util.List;
 
-public class QuickSort {
-    private List<String> elements;
-    private final boolean isAscending;
-    private final int iterationTime;
-    private final boolean isNumeric;
+
+public class QuickSort extends Algorithm {
 
     /**
      * Builds a new QuickSort instance based on the settings provided.
@@ -16,12 +16,8 @@ public class QuickSort {
      * @throws NullPointerException if configs is null
      */
 
-    public QuickSort(AppConfigs configs) {
-        this.isAscending = configs.o().equalsIgnoreCase("az");
-        this.iterationTime = configs.s();
-        this.elements = configs.inputList();
-        this.isNumeric = elements.stream().allMatch(this::isNumeric);
-//        System.out.println("Valores recebidos no QuickSort: " + elements);
+    public QuickSort(List<String> list, boolean isAscending, int iterationTime) {
+        super(list, isAscending, iterationTime);
     }
 
     /**
@@ -29,9 +25,7 @@ public class QuickSort {
      * Prints the original list and the sorted list after execution.
      */
     public void sort() {
-        System.out.println("Original list: " + elements);
-        quickSort(0, elements.size() - 1);
-        System.out.println("Sorted list: " + elements);
+        quickSort(0, list.size() - 1);
     }
 
     /**
@@ -89,6 +83,8 @@ public class QuickSort {
             return isAscending ? numA <= numB : numA > numB;
         }
 
+        iterationCount++;
+        displayCurrentState();
         if (isAscending) {
             // para az
             return a.compareTo(b) < 0;
@@ -129,5 +125,14 @@ public class QuickSort {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+
+        return i + 1;
+    }
+
+    private void swap(int i, int j) {
+        String temp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, temp);
     }
 }

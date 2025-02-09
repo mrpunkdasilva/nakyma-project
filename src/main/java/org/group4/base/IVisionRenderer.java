@@ -1,4 +1,4 @@
-package org.group4.interfaces;
+package org.group4.base;
 
 /**
  * This interface provides methods for rendering different elements in a user interface.

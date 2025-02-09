@@ -1,4 +1,4 @@
-package org.group4.interfaces;
+package org.group4.base;
 
 /**
  * Interface for validating arguments passed to the sorting algorithm.

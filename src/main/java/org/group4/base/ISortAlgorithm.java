@@ -1,4 +1,4 @@
-package org.group4.interfaces;
+package org.group4.base;
 
 import org.group4.ui.SortingVisualizer;
 
