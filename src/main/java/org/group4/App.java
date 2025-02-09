@@ -41,6 +41,6 @@ public class App {
 
         QuickSort quickSort = new QuickSort(configs);
         quickSort.sort();
-        quickSort.displaySortedArray();
+
     }
 }

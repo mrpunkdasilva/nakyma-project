@@ -57,13 +57,9 @@ public class QuickSort {
 
         if (isAscending) {
             // para az
-            if (a.toLowerCase().equalsIgnoreCase(b.toLowerCase())) {
-                return a.compareTo(b) < 0;  // Maiúsculas antes de minúsculas
-            }
-            return a.toLowerCase().compareTo(b.toLowerCase()) < 0;
-        } else {  // Para "za"
-            return a.toLowerCase().compareTo(b.toLowerCase()) > 0;
+            return a.compareTo(b) < 0;
         }
+        return a.compareTo(b) > 0;
     }
 
 
