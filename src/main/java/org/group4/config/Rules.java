@@ -9,7 +9,7 @@ package org.group4.config;
 public enum Rules {
     // Sorting algorithms
     BUBBLE_SORT("B"),
-    MERGE_SORT("M"),
+    SELECTION_SORT("S"),
     QUICK_SORT("Q"),
     // List types
     NUMERIC("N"),

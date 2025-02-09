@@ -28,13 +28,13 @@ public class VisionRenderer implements IVisionRenderer {
      */
     @Override
     public void renderPressStart() {
-        // Para qualquer música que esteja tocando
+        // For any song that's playing
         Aengus.stopMusic();
 
-        // Toca a nova música
+        // Play the new song
         Aengus.playMusic("src/main/resources/loading.wav", -1);
 
-        // Exibe a mensagem e aguarda o Enter
+        // Displays the message and waits for Enter
         mercury.showMessage("\n\n" + AsciiColor.applyMultiple(Texts.PRESS_ENTER.getText(), AsciiColor.ITALIC, AsciiColor.YELLOW));
         scanner.nextLine();
     }
@@ -46,16 +46,16 @@ public class VisionRenderer implements IVisionRenderer {
 
     @Override
     public void renderWelcome() {
-        // Toca a música de boas-vindas
+        // Play the welcome music
         Aengus.playMusic("src/main/resources/game_start.wav", 0); // Toca uma vez (sem loop)
 
-        // Renderiza o logo
+        // Render the logo
         renderLogo();
 
-        // Exibe a mensagem de boas-vindas
+        // Displays the welcome message
         mercury.showMessage("\n" + AsciiColor.applyMultiple(Texts.WELCOME.getText(), AsciiColor.MAGENTA, AsciiColor.BOLD));
 
-        // Chama o método para aguardar o Enter
+        // Calls the method to wait for Enter
         renderPressStart();
     }
 
@@ -119,14 +119,14 @@ public class VisionRenderer implements IVisionRenderer {
             int progress = (i * barLength) / totalSteps;
             StringBuilder bar = new StringBuilder("\r[");
 
-            // Adiciona os blocos preenchidos
+            // Add the completed blocks
             for (int j = 0; j < barLength; j++) {
                 bar.append(j < progress ? "=" : " ");
             }
 
             bar.append("] ").append(i * 10).append("%");
 
-            // Atualiza a barra no console
+            // Updates the bar in the console
             System.out.print(AsciiColor.applyMultiple(bar.toString(), AsciiColor.BOLD, AsciiColor.GREEN));
 
             sleep(500);
