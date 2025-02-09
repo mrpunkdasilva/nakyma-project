@@ -1,4 +1,4 @@
-package org.group4.algorithm;
+package org.group4.sortAlgorithms;
 
 import org.group4.config.AppConfigs;
 
