@@ -1,8 +1,12 @@
 package org.group4;
 
+import org.group4.algorithm.QuickSort;
 import org.group4.config.AppConfigs;
 import org.group4.handlers.ArgumentHandler;
 import org.group4.ui.VisionRenderer;
+
+
+import java.util.List;
 
 /**
  * The main application class. It initializes the necessary components and runs the application.
@@ -12,6 +16,7 @@ public class App {
     private AppConfigs configs;
     private final VisionRenderer vision;
     private final ArgumentHandler argumentHandler;
+
 
     /**
      * Constructs a new App instance.
@@ -36,6 +41,10 @@ public class App {
         vision.loading();
         vision.sleep(500);
         vision.clear(100);
+
+        QuickSort quickSort = new QuickSort(configs);
+        quickSort.sort();
+        quickSort.displaySortedArray();
 
 //        vision.renderMatrix(configs.inputList());
     }

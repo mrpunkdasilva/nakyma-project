@@ -29,7 +29,7 @@ public class ValidateHandler implements IValidateArguments {
     @Override
     public boolean validateTypeSortAlgorithm(String type) {
         return type.equalsIgnoreCase(Rules.BUBBLE_SORT.getText()) ||
-                        type.equalsIgnoreCase(Rules.MERGE_SORT.getText()) ||
+                        type.equalsIgnoreCase(Rules.SELECTION_SORT.getText()) ||
                         type.equalsIgnoreCase(Rules.QUICK_SORT.getText());
     }
 
