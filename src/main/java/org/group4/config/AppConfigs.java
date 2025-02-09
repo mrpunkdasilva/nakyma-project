@@ -2,6 +2,7 @@ package org.group4.config;
 
 import java.util.List;
 
+// TODO: DESCREVER ESSES PARAMETROS DA CONFIGURAÇÃO
 /**
  * This record represents the application's configuration settings.
  *
@@ -14,4 +15,16 @@ import java.util.List;
  * @param s An integer parameter representing a specific configuration value.
  */
 public record AppConfigs(String a, String typeList, String o, String in, int r, List<String> inputList, int s) {
+      public String getAlgorithmName() {
+        if (a.equalsIgnoreCase("b")) {
+            return "Bubble Sort";
+        } else {
+            if (a.equalsIgnoreCase("s")) return "Selection Sort";
+            return "Quick Sort";
+        }
+    }
+
+    public String getTypeListName() {
+        return typeList.equalsIgnoreCase("c")? "Caracter" : "Inteiro";
+    }
 }

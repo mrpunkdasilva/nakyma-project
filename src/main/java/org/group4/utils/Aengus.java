@@ -70,7 +70,6 @@ public class Aengus {
             clip.stop();
             clip.setFramePosition(0);  // Reset to the beginning of the song
             isPlaying = false;
-            System.out.println("Music stopped.");
         }
     }
 
@@ -83,7 +82,6 @@ public class Aengus {
             // Clip volume is represented between -80.0f (silent) and 6.0206f (maximum volume)
             float newVolume = volume * volumeControl.getMaximum();
             volumeControl.setValue(newVolume);
-            System.out.println("Volume set to " + volume);
         }
     }
 
