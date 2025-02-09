@@ -32,7 +32,7 @@ public class VisionRenderer implements IVisionRenderer {
         Aengus.stopMusic();
 
         // Play the new song
-        Aengus.playMusic("src/main/resources/loading.wav", -1);
+//        Aengus.playMusic("src/main/resources/loading.wav", -1);
 
         // Displays the message and waits for Enter
         mercury.showMessage("\n\n" + AsciiColor.applyMultiple(Texts.PRESS_ENTER.getText(), AsciiColor.ITALIC, AsciiColor.YELLOW));

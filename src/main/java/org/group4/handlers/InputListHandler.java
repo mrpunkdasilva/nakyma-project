@@ -88,7 +88,7 @@ public class InputListHandler {
     public boolean manipulateItemList(String item) {
         switch (type) {
             case "c":
-                this.listAsString.add(item.toUpperCase());
+                this.listAsString.add(item);
                 return true;
             case "n":
                 try {
