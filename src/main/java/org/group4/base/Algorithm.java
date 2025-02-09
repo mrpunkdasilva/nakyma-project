@@ -10,9 +10,9 @@ import java.util.List;
 public abstract class Algorithm {
 
     /**
-     * The list of strings to be sorted.
+     * The elements of strings to be sorted.
      */
-    protected final List<String> list;
+    protected List<String> elements;
 
     /**
      * A flag indicating whether the sorting should be in ascending order.
@@ -34,31 +34,49 @@ public abstract class Algorithm {
      */
     protected Mercury mercury = new Mercury();
 
+    protected final boolean isNumeric;
 
+    
     /**
-     * Constructor for the Algorithm class.
+     * Constructs an instance of the Algorithm class.
      *
-     * @param list The list of strings to be sorted.
-     * @param isAscending A flag indicating whether the sorting should be in ascending order.
-     * @param iterationTime The number of iterations the algorithm should perform.
+     * @param elements The list of strings to be sorted.
+     * @param typeOrder The order of sorting. It can be either "az" (for ascending) or "za" (for descending).
+     * @param iterationTime The time interval in milliseconds between each iteration of the algorithm.
+     * @param isNumeric A flag indicating whether the sorting should be performed numerically.
      */
-    protected Algorithm(List<String> list, boolean isAscending, int iterationTime) {
-        this.list = list;
-        this.isAscending = isAscending;
+    protected Algorithm(List<String> elements, String typeOrder, int iterationTime, boolean isNumeric) {
+        this.elements = elements;
+        this.isAscending = typeOrder.equalsIgnoreCase("az");
         this.iterationTime = iterationTime;
+        this.isNumeric = isNumeric;
     }
 
     /**
-     * Displays the sorted list of strings.
+     * Displays the sorted elements of strings.
      */
-    public void displaySortedArray() {
-        mercury.showMessage("Sorted List: " + list);
+    protected void displaySortedArray() {
+        mercury.showMessage("Sorted List: " + elements);
     }
 
     /**
-     * Displays the current state of the algorithm, including the iteration count and the current list.
+     * Displays the current state of the algorithm, including the iteration count and the current elements.
      */
-    public void displayCurrentState() {
-         mercury.showMessage("Iteration " + iterationCount + ": " + list);
+    protected void displayCurrentState() {
+        mercury.showMessage("Iteration " + iterationCount + ": " + elements);
+        try {
+            Thread.sleep(iterationTime);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    
+    /**
+     * Displays the original list of strings before sorting.
+     *
+     * @return void - This method does not return any value. It only displays the original elements.
+     */
+    protected void displayOriginalList() {
+        mercury.showMessage("Original elements: " + elements);
     }
 }

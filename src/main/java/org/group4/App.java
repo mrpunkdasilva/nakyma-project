@@ -34,12 +34,22 @@ public class App {
 
         argumentHandler.verify();
         configs = argumentHandler.createAppConfigs();
+        vision.setConfigs(configs);
 
         vision.loading();
         vision.sleep(500);
         vision.clear(100);
 
-        QuickSort quickSort = new QuickSort(configs);
+        vision.renderHeader();
+
+        vision.clear(1);
+
+        QuickSort quickSort = new QuickSort(
+                configs.inputList(),
+                configs.o(),
+                configs.s(),
+                configs.typeList().equalsIgnoreCase("n")
+        );
         quickSort.sort();
 
     }

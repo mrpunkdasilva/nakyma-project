@@ -73,11 +73,6 @@ public enum Texts {
 
     ;
 
-    public ArrayList<String> HEADER_ARGS() {
-        return new ArrayList<String>(){
-
-        };
-    }
 
     private final String text;
 

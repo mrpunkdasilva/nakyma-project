@@ -10,14 +10,15 @@ import java.util.List;
 public class QuickSort extends Algorithm {
 
     /**
-     * Builds a new QuickSort instance based on the settings provided.
+     * Constructor for the QuickSort class.
      *
-     * @param configs Application settings containing the input list and sort parameters
-     * @throws NullPointerException if configs is null
+     * @param elements List of elements to be sorted
+     * @param typeOrder Type of order (numeric or alphabetic)
+     * @param iterationTime Number of iterations for sorting
+     * @param isNumeric Flag indicating whether the elements are numeric
      */
-
-    public QuickSort(List<String> list, boolean isAscending, int iterationTime) {
-        super(list, isAscending, iterationTime);
+    public QuickSort(List<String> elements, String typeOrder, int iterationTime, boolean isNumeric) {
+        super(elements, typeOrder, iterationTime, isNumeric);
     }
 
     /**
@@ -25,7 +26,9 @@ public class QuickSort extends Algorithm {
      * Prints the original list and the sorted list after execution.
      */
     public void sort() {
-        quickSort(0, list.size() - 1);
+        displayOriginalList();
+        quickSort(0, elements.size() - 1);
+        displaySortedArray();
     }
 
     /**
@@ -41,7 +44,6 @@ public class QuickSort extends Algorithm {
             quickSort(low, pivotIndex - 1);
             quickSort(pivotIndex + 1, high);
         }
-
     }
 
     /**
@@ -61,11 +63,10 @@ public class QuickSort extends Algorithm {
             if (compare(elements.get(j), pivot)) {
                 i++;
                 swap(i, j);
-
             }
         }
         swap(i + 1, high);
-        printIteration();
+        displayCurrentState();
         return i + 1;
     }
 
@@ -83,23 +84,11 @@ public class QuickSort extends Algorithm {
             return isAscending ? numA <= numB : numA > numB;
         }
 
-        iterationCount++;
-        displayCurrentState();
         if (isAscending) {
             // para az
             return a.compareTo(b) < 0;
         }
         return a.compareTo(b) > 0;
-    }
-
-    /**
-     * Checks if a string represents an integer.
-     *
-     * @param str String to be checked
-     * @return true if the string is a valid number, false otherwise
-     */
-    private boolean isNumeric(String str) {
-        return str.matches("-?\\d+");
     }
 
     /**
@@ -112,27 +101,5 @@ public class QuickSort extends Algorithm {
         String temp = elements.get(i);
         elements.set(i, elements.get(j));
         elements.set(j, temp);
-    }
-
-    /**
-     * Displays the current state of the list while the algorithm is running.
-     * Pauses execution for iterationTime milliseconds.
-     */
-    private void printIteration() {
-        System.out.println("Iteração: " + elements);
-        try {
-            Thread.sleep(iterationTime);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-        return i + 1;
-    }
-
-    private void swap(int i, int j) {
-        String temp = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, temp);
     }
 }

@@ -78,7 +78,7 @@ public class VisionRenderer implements IVisionRenderer {
     }
 
     // TODO: REFATORAR ESTE METODO
-    private void renderHeader() {
+    public void renderHeader() {
         // Cabeçalho da tabela
         String header = """
                 +---------------------------------------------------+
