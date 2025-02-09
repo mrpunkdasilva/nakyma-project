@@ -74,7 +74,7 @@ public class QuickSort {
 
         // Prints the current state of the array after the partition
         iterationCount++;
-        System.out.println("Iteração " + iterationCount + ": " + list);
+        System.out.println("Iteration " + iterationCount + ": " + list);
 
         try {
             Thread.sleep(iterationTime);
@@ -92,6 +92,6 @@ public class QuickSort {
     }
 
     public void displaySortedArray() {
-        System.out.println("Lista Ordenada: " + list);
+        System.out.println("Sorted List: " + list);
     }
 }
