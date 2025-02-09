@@ -2,7 +2,8 @@
 
 # About
 The Sorting Algorithm Viewer (SAV) is a Java application that implements sorting algorithms, allowing step-by-step visualization of each iteration through graphics represented by asterisks.
-
+## Warning!!
+This project is incomplete, the only alghorithm working is the **QuickSort**
 # Features
 - Implements the following sorting algorithms:
     - **BubbleSort**
@@ -21,14 +22,14 @@ java SAV a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<p
 ```
 
 ### Argument Descriptions
-| Argument       | Description                                                                 |
-|----------------|-----------------------------------------------------------------------------|
-| `a`            | Sorting algorithm (`b` = BubbleSort, `s` = SelectionSort, `q` = QuickSort). |
-| `t`            | List type (`n` = numbers, `c` = character).                                 |
-| `o`            | Order (`az` = ascending, `za` = descending).                                |
-| `in`           | Input type (`r` = random, `m` = manual).                                    |
-| `v`            | Values separated by commas (required if `in=m`).                            |
-| `s`            | Pause between iterations (in milliseconds).                                 |
+| Argument       | Description                                                                                                   |
+|----------------|---------------------------------------------------------------------------------------------------------------|
+| `a`            | Sorting algorithm (`b` = BubbleSort, `s` = SelectionSort, `q` = QuickSort).                                   |
+| `t`            | List type (`n` = numbers, `c` = character).                                                                   |
+| `o`            | Order (`az` = ascending, `za` = descending).                                                                  |
+| `in`           | Input type (`r` = random, `m` = manual).                                                                      |
+| `v`            | Values separated by commas (required if `in=m`), if not put `r=x`, x being the qtd. of numbers to be generated. |
+| `s`            | Pause between iterations (in milliseconds).                                                                   |
 
 ### Usage Examples
 
@@ -43,7 +44,7 @@ java SAV a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<p
    ```
 3. **QuickSort with random input (descending):**
    ```bash
-    java SAV a=s t=c o=za in=r r=5 s=500
+     java SAV a=q t=c o=za in=m v="b,B,Z,a" s=500
    ```
 ## Diagram Classes
 
