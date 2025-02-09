@@ -1,15 +1,13 @@
 package org.group4.sortAlgorithms;
 
+import org.group4.base.Algorithm;
 import org.group4.config.AppConfigs;
+import org.group4.utils.Mercury;
 
 import java.util.List;
 
 
-public class QuickSort {
-    private final List<String> list;
-    private final boolean isAscending;
-    private final int iterationTime;
-    private int iterationCount = 0;
+public class QuickSort extends Algorithm {
 
 //    /**
 //     * QuickSort constructor.
@@ -19,20 +17,15 @@ public class QuickSort {
 //     * @param iterationTime Pause time between each iteration, in milliseconds.
 //     */
 
-    public QuickSort(AppConfigs configs) {
-        this.list = configs.inputList();
-        String order = configs.o().toLowerCase();
-        this.isAscending = order.equals("az");
-        this.iterationTime = configs.s();
+    public QuickSort(List<String> list, boolean isAscending, int iterationTime) {
+        super(list, isAscending, iterationTime);
     }
 
     /**
      * Public method to start sorting.
      */
     public void sort() {
-        System.out.println("Iniciando QuickSort...");
         quickSort(0, list.size() - 1);
-        System.out.println("QuickSort finalizado!");
     }
 
     /**
@@ -56,7 +49,6 @@ public class QuickSort {
      * @param high Final index of the split.
      * @return The index of the pivot after the split.
      */
-
     private int partition(int low, int high) {
         String pivot = list.get(high);
         int i = low - 1;
@@ -72,9 +64,8 @@ public class QuickSort {
         }
         swap(i + 1, high);
 
-        // Prints the current state of the array after the partition
         iterationCount++;
-        System.out.println("Iteration " + iterationCount + ": " + list);
+        displayCurrentState();
 
         try {
             Thread.sleep(iterationTime);
@@ -89,9 +80,5 @@ public class QuickSort {
         String temp = list.get(i);
         list.set(i, list.get(j));
         list.set(j, temp);
-    }
-
-    public void displaySortedArray() {
-        System.out.println("Sorted List: " + list);
     }
 }

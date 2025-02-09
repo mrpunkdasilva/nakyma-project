@@ -1,7 +1,7 @@
 package org.group4.handlers;
 
 import org.group4.config.Rules;
-import org.group4.interfaces.IValidateArguments;
+import org.group4.base.IValidateArguments;
 
 /**
  * This class provides methods for validating different aspects of the sorting application.

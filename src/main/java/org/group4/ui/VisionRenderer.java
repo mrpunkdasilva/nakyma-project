@@ -2,13 +2,12 @@ package org.group4.ui;
 
 import org.group4.config.AppConfigs;
 import org.group4.handlers.InputListHandler;
-import org.group4.interfaces.IVisionRenderer;
+import org.group4.base.IVisionRenderer;
 import org.group4.utils.Aengus;
 import org.group4.values.AsciiColor;
 import org.group4.values.Texts;
 import org.group4.utils.Mercury;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**

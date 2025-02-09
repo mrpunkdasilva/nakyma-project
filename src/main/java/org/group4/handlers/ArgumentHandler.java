@@ -1,7 +1,7 @@
 package org.group4.handlers;
 
 import org.group4.config.AppConfigs;
-import org.group4.interfaces.IArgumentHandler;
+import org.group4.base.IArgumentHandler;
 import org.group4.utils.GenerateList;
 import org.group4.values.AsciiColor;
 import org.group4.values.Texts;
