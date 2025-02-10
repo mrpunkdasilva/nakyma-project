@@ -79,23 +79,7 @@ public class VisionRenderer implements IVisionRenderer {
 
     // TODO: REFATORAR ESTE METODO
     public void renderHeader() {
-        // Cabeçalho da tabela
-        String header = """
-                +---------------------------------------------------+
-                | Configurações da Aplicação                        |
-                +-------------------+-------------------------------+
-                | Parâmetro         | Valor                         |
-                +-------------------+-------------------------------+
-                """;
-
-        String typeList = String.format("| %-17s | %-29s ", "Tipo de Lista", configs.getTypeListName());
-        String alg = String.format("| %-17s | %-29s  ", "Algoritmo", configs.getAlgorithmName());
-        String inputList = String.format("| %-17s | %-29s ", "Lista de Entrada", configs.inputList());
-        String speed = String.format("| %-17s | %-29s ", "Velocidade", configs.s() + "ms");
-        String footer = "+-------------------+-------------------------------+";
-
-        // Exibe a tabela completa
-        mercury.showMessage(header + typeList + "\n" + alg + "\n"+ inputList + "\n" + speed + "\n" + footer);
+        mercury.showMessage(Texts.tableHeader(configs));
     }
 
     /**

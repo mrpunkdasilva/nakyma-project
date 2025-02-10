@@ -18,7 +18,7 @@ Run the program by providing the necessary parameters via the command line.
 
 ### Argument Format
 ```
-java SAV a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<pause>
+java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<pause>
 ```
 
 ### Argument Descriptions
@@ -33,18 +33,20 @@ java SAV a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<p
 
 ### Usage Examples
 
+> ⚠️ For partial exam only Bubble Sort is working
+
 1. **BubbleSort with manual input (ascending):**
    ```bash
-   java SAV a=b t=n o=az in=m v="4,2,6,0" s=500
+   java Main a=b t=n o=az in=m v="4,2,6,0" s=500
    ```
 
 2. **SelectionSort with manual input (descending):**
    ```bash
-   java SAV a=s t=n o=za in=m v="4,2,6,0" s=500
+   java Main a=s t=n o=za in=m v="4,2,6,0" s=500
    ```
 3. **QuickSort with random input (descending):**
    ```bash
-     java SAV a=q t=c o=za in=m v="b,B,Z,a" s=500
+     java Main a=q t=c o=za in=m v="b,B,Z,a" s=500
    ```
 ## Diagram Classes
 

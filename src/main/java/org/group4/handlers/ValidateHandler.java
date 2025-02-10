@@ -98,7 +98,6 @@ public class ValidateHandler implements IValidateArguments {
 
         if(!list.isEmpty()) {
             if (typeList.equalsIgnoreCase(Rules.CHARACTERS.getText()) || typeList.equalsIgnoreCase(Rules.NUMERIC.getText())) {
-                System.out.println(inputListHandler.handleInput());
                 return inputListHandler.handleInput();
             }
         }

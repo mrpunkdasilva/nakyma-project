@@ -1,6 +1,8 @@
 package org.group4.base;
 
+import org.group4.config.AlgorithmConfigs;
 import org.group4.utils.Mercury;
+import org.group4.values.AsciiColor;
 
 import java.util.List;
 
@@ -39,36 +41,68 @@ public abstract class Algorithm {
     
     /**
      * Constructs an instance of the Algorithm class.
-     *
-     * @param elements The list of strings to be sorted.
-     * @param typeOrder The order of sorting. It can be either "az" (for ascending) or "za" (for descending).
-     * @param iterationTime The time interval in milliseconds between each iteration of the algorithm.
-     * @param isNumeric A flag indicating whether the sorting should be performed numerically.
      */
-    protected Algorithm(List<String> elements, String typeOrder, int iterationTime, boolean isNumeric) {
-        this.elements = elements;
-        this.isAscending = typeOrder.equalsIgnoreCase("az");
-        this.iterationTime = iterationTime;
-        this.isNumeric = isNumeric;
+    protected Algorithm(AlgorithmConfigs algorithmConfigs) {
+        this.elements = algorithmConfigs.elements();
+        this.isAscending = algorithmConfigs.typeOrder().equalsIgnoreCase("az");
+        this.iterationTime = algorithmConfigs.skip();
+        this.isNumeric = algorithmConfigs.isNumeric();
     }
+
+    public abstract void sort();
 
     /**
      * Displays the sorted elements of strings.
      */
     protected void displaySortedArray() {
-        mercury.showMessage("Sorted List: " + elements);
+        mercury.showMessage("\nSorted List: " + elements);
     }
 
     /**
      * Displays the current state of the algorithm, including the iteration count and the current elements.
      */
     protected void displayCurrentState() {
-        mercury.showMessage("Iteration " + iterationCount + ": " + elements);
+        mercury.showMessage(
+                AsciiColor.applyMultiple("ᓚᘏᗢ ", AsciiColor.YELLOW).repeat(iterationCount) + "\n"  +
+                        "Iteration " + ": " + elements +
+                        "\n"
+        );
         try {
             Thread.sleep(iterationTime);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+
+    /**
+     * Compares two elements considering whether they are numeric or not and the sorting direction.
+     *
+     * @param a First element for comparison
+     * @param b Second element for comparison
+     * @return true if 'a' should come before 'b' in the current ordering
+     */
+    protected boolean compare(String a, String b) {
+        if (isNumeric) {
+            int numA = Integer.parseInt(a);
+            int numB = Integer.parseInt(b);
+            return isAscending ? numA <= numB : numA > numB;
+        }
+
+        if (isAscending) return a.compareTo(b) < 0;
+
+        return a.compareTo(b) > 0;
+    }
+
+    /**
+     * Swaps two positions in the array.
+     *
+     * @param i First position
+     * @param j Second position
+     */
+    protected void swap(int i, int j) {
+        String temp = elements.get(i);
+        elements.set(i, elements.get(j));
+        elements.set(j, temp);
     }
     
     /**
@@ -77,6 +111,6 @@ public abstract class Algorithm {
      * @return void - This method does not return any value. It only displays the original elements.
      */
     protected void displayOriginalList() {
-        mercury.showMessage("Original elements: " + elements);
+        mercury.showMessage("Original elements: " + elements + "\n");
     }
 }

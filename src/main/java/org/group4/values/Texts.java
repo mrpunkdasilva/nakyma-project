@@ -1,5 +1,7 @@
 package org.group4.values;
 
+import org.group4.config.AppConfigs;
+
 import java.util.ArrayList;
 
 public enum Texts {
@@ -70,6 +72,13 @@ public enum Texts {
     ⠀⠀⠀⠀⠀⠸⡠⠇⠀⠀⠀⠈⢆⠇⠀⠀⠀⠀⠀⠀
     """),
     PATH_RESOURCES("src/main/resources/"),
+    HEADER("""
++---------------------------------------------------+
+| Application Settings                               
++-------------------+-------------------------------+
+| Parameter         | Value                         
++-------------------+-------------------------------+
+    """)
 
     ;
 
@@ -82,6 +91,16 @@ public enum Texts {
 
     public String getText() {
         return text;
+    }
+
+    public static String tableHeader(AppConfigs configs) {
+        String typeList = String.format("| %-17s | %-29s ", "List Type", configs.getTypeListName());
+        String alg = String.format("| %-17s | %-29s  ", "Algorithm", configs.getAlgorithmName());
+        String inputList = String.format("| %-17s | %-29s ", "Input List", configs.inputList());
+        String speed = String.format("| %-17s | %-29s ", "Speed", configs.s() + "ms");
+        String footer = "+-------------------+-------------------------------+";
+
+        return Texts.HEADER.getText() + typeList + "\n" + alg + "\n"+ inputList + "\n" + speed + "\n" + footer;
     }
 
 }
