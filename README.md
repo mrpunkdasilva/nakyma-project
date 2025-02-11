@@ -33,7 +33,7 @@ java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<
 
 ### Usage Examples
 
-> ⚠️ For partial exam only Bubble Sort is working
+> ⚠️ For partial exam only Quick Sort is working
 
 1. **BubbleSort with manual input (ascending):**
    ```bash
