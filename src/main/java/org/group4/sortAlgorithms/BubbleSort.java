@@ -8,11 +8,11 @@ public class BubbleSort extends Algorithm {
     /**
      * Constructor for the BubbleSort class.
      *
-     * @param elements List of elements to be sorted
-     * @param typeOrder Type of order (numeric or alphabetic)
-     * @param iterationTime Number of iterations for sorting
-     * @param isNumeric Flag indicating whether the elements are numeric
-     */
+//     * @param elements List of elements to be sorted
+//     * @param typeOrder Type of order (numeric or alphabetic)
+//     * @param iterationTime Number of iterations for sorting
+//     * @param isNumeric Flag indicating whether the elements are numeric
+//     */
     public BubbleSort(AlgorithmConfigs algorithmConfigs) {
         super(algorithmConfigs);
     }
