@@ -99,6 +99,12 @@ java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<
         + apply(String) String
         String code
     }
+    class BubbleSort {
+        + BubbleSort(AppConfigs)
+        + displaySortedArray() void
+        - bubbleSort() void
+        + sort() void
+    }
     class GenerateList {
         + GenerateList()
         - generateCharacters() String
@@ -229,6 +235,7 @@ java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<
     App  ..>  ArgumentHandler : «create»
     App "1" *--> "argumentHandler 1" ArgumentHandler
     App  ..>  QuickSort : «create»
+    App  ..>  BubbleSort : «create»
     App  ..>  VisionRenderer : «create»
     App "1" *--> "vision 1" VisionRenderer
     ArgumentHandler  ..>  AppConfigs : «create»
