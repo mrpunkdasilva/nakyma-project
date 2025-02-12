@@ -1,6 +1,7 @@
 package org.group4;
 
 import org.group4.config.AlgorithmConfigs;
+import org.group4.sortAlgorithms.BubbleSort;
 import org.group4.sortAlgorithms.QuickSort;
 import org.group4.config.AppConfigs;
 import org.group4.handlers.ArgumentHandler;
@@ -54,9 +55,13 @@ public class App {
         );
 
         switch (configs.a()) {
-            case "b" -> {
+            case "q" -> {
                 QuickSort quickSort = new QuickSort(algorithmConfigs);
                 quickSort.sort();
+            }
+            case "b" -> {
+                BubbleSort bubbleSort = new BubbleSort(algorithmConfigs);
+                bubbleSort.sort();
             }
             default -> mercury.showError("Algorithm not supported.");
         }
