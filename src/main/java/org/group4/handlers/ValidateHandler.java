@@ -29,8 +29,8 @@ public class ValidateHandler implements IValidateArguments {
     @Override
     public boolean validateTypeSortAlgorithm(String type) {
         return type.equalsIgnoreCase(Rules.BUBBLE_SORT.getText()) ||
-                        type.equalsIgnoreCase(Rules.SELECTION_SORT.getText()) ||
-                        type.equalsIgnoreCase(Rules.QUICK_SORT.getText());
+                type.equalsIgnoreCase(Rules.SELECTION_SORT.getText()) ||
+                type.equalsIgnoreCase(Rules.QUICK_SORT.getText());
     }
 
     /**
@@ -88,7 +88,7 @@ public class ValidateHandler implements IValidateArguments {
     /**
      * Validates if the provided user input for the list is valid based on the list type.
      *
-     * @param list The user input for the list.
+     * @param list     The user input for the list.
      * @param typeList The type of list.
      * @return {@code true} if the user input for the list is valid, {@code false} otherwise.
      */
@@ -96,7 +96,7 @@ public class ValidateHandler implements IValidateArguments {
     public boolean validateUserInput(String list, String typeList) {
         InputListHandler inputListHandler = new InputListHandler(list, typeList);
 
-        if(!list.isEmpty()) {
+        if (!list.isEmpty()) {
             if (typeList.equalsIgnoreCase(Rules.CHARACTERS.getText()) || typeList.equalsIgnoreCase(Rules.NUMERIC.getText())) {
                 return inputListHandler.handleInput();
             }
@@ -113,8 +113,12 @@ public class ValidateHandler implements IValidateArguments {
      */
     @Override
     public boolean validateIterationTime(String time) {
-        int timeInt = Integer.parseInt(time);
-        return timeInt >= Rules.MIN_VALUE_TIME.getInt() && timeInt <= Rules.MAX_VALUE.getInt();
+        try {
+            int timeInt = Integer.parseInt(time);
+            return timeInt >= Rules.MIN_VALUE_TIME.getInt() && timeInt <= Rules.MAX_VALUE.getInt();
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
