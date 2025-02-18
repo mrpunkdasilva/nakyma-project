@@ -13,10 +13,7 @@ public class QuickSort extends Algorithm {
     /**
      * Constructor for the QuickSort class.
      *
-     * @param elements List of elements to be sorted
-     * @param typeOrder Type of order (numeric or alphabetic)
-     * @param iterationTime Number of iterations for sorting
-     * @param isNumeric Flag indicating whether the elements are numeric
+     * @param algorithmConfigs Configuration settings for the algorithm
      */
     public QuickSort(AlgorithmConfigs algorithmConfigs) {
         super(algorithmConfigs);
