@@ -85,7 +85,6 @@ public class ArgumentHandler implements IArgumentHandler {
     public AppConfigs createAppConfigs() {
         int randomLengthList = getOptionalIntArgumentByKey("r", -1);
         String typeList = getArgumentByKey("t");
-        List<String> inputList = new ArrayList<>();
         String inputUser = "";
 
         if (getArgumentByKey("in").equalsIgnoreCase("m")) {
@@ -96,7 +95,7 @@ public class ArgumentHandler implements IArgumentHandler {
 
         InputListHandler inputListHandler = new InputListHandler(inputUser, typeList);
         inputListHandler.handleInput();
-        inputList = inputListHandler.getAsString();
+        List<String> inputList = inputListHandler.getAsString();
 
         return new AppConfigs(
                 getArgumentByKey("a"),

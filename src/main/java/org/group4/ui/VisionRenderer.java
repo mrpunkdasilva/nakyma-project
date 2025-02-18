@@ -31,7 +31,7 @@ public class VisionRenderer implements IVisionRenderer {
         Aengus.stopMusic();
 
         // Play the new song
-//        Aengus.playMusic("src/main/resources/loading.wav", -1);
+        Aengus.playMusic("src/main/resources/loading.wav", -1);
 
         // Displays the message and waits for Enter
         mercury.showMessage("\n\n" + AsciiColor.applyMultiple(Texts.PRESS_ENTER.getText(), AsciiColor.ITALIC, AsciiColor.YELLOW));
@@ -46,7 +46,7 @@ public class VisionRenderer implements IVisionRenderer {
     @Override
     public void renderWelcome() {
         // Play the welcome music
-        Aengus.playMusic("src/main/resources/game_start.wav", 0); // Toca uma vez (sem loop)
+        Aengus.playMusic("src/main/resources/game_start.wav", -1); // Toca uma vez (sem loop)
 
         // Render the logo
         renderLogo();
@@ -77,7 +77,6 @@ public class VisionRenderer implements IVisionRenderer {
 
     }
 
-    // TODO: REFATORAR ESTE METODO
     public void renderHeader() {
         mercury.showMessage(Texts.tableHeader(configs));
     }
