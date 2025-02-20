@@ -164,39 +164,4 @@ public abstract class Algorithm {
         return -1; // Caso não seja uma letra (opcional)
     }
 
-    public List<String> getElements() {
-        return elements;
-    }
-
-    public void setElements(List<String> elements) {
-        this.elements = elements;
-    }
-
-    public boolean isAscending() {
-        return isAscending;
-    }
-
-    public int getIterationTime() {
-        return iterationTime;
-    }
-
-    public int getIterationCount() {
-        return iterationCount;
-    }
-
-    public void setIterationCount(int iterationCount) {
-        this.iterationCount = iterationCount;
-    }
-
-    public Mercury getMercury() {
-        return mercury;
-    }
-
-    public void setMercury(Mercury mercury) {
-        this.mercury = mercury;
-    }
-
-    public boolean isNumeric() {
-        return isNumeric;
-    }
 }
