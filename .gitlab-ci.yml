@@ -10,7 +10,7 @@ generate_changelog:
     - |
       git fetch --tags
       LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-      
+
       if [ -z "$LAST_TAG" ]; then
         echo "Nenhuma tag encontrada. Criando um changelog inicial."
         git log --pretty=format:"- %s" > CHANGELOG.md
@@ -20,8 +20,14 @@ generate_changelog:
       fi
 
       cat CHANGELOG.md
+
+      # Configurar identidade do Git dentro do runner
+      git config --global user.email "ci-bot@gitlab.com"
+      git config --global user.name "GitLab CI"
+
       git add CHANGELOG.md
       git commit -m "Atualizando changelog para $LAST_TAG"
       git push origin main
+      
   only:
     - main
