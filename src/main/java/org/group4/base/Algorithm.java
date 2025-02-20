@@ -115,6 +115,11 @@ public abstract class Algorithm {
         mercury.showMessage("Original elements: " + elements + "\n");
     }
 
+    /**
+     * Displays the current list formatted as a histogram.
+     * If the elements are numeric, it displays a histogram based on their values.
+     * If the elements are characters, it converts them to numeric values and displays a corresponding histogram.
+     */
     protected void displayCurrentList() {
         if (isNumeric) {
             List<Integer> integerList = elements.stream()
@@ -155,6 +160,15 @@ public abstract class Algorithm {
 
     }
 
+    /**
+     * Converts a character into a numeric value for sorting and comparison.
+     * Uppercase letters (A-Z) are mapped to values from 0 to 25.
+     * Lowercase letters (a-z) are mapped to values from 26 to 51.
+     * Other characters return -1.
+     *
+     * @param ch the character to be mapped
+     * @return the numeric value corresponding to the character or -1 if invalid
+     */
     private int mapCharToValue(char ch) {
         if (ch >= 'A' && ch <= 'Z') {
             return ch - 'A'; // Maiúsculas de 0 a 25
