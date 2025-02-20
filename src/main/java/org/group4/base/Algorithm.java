@@ -4,6 +4,7 @@ import org.group4.config.AlgorithmConfigs;
 import org.group4.utils.Mercury;
 import org.group4.values.AsciiColor;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -64,9 +65,9 @@ public abstract class Algorithm {
     protected void displayCurrentState() {
         mercury.showMessage(
                 AsciiColor.applyMultiple("ᓚᘏᗢ ", AsciiColor.YELLOW).repeat(iterationCount) + "\n"  +
-                        "Iteration " + ": " + elements +
-                        "\n"
+                        "Iteration " + ": "
         );
+        displayCurrentList();
         try {
             Thread.sleep(iterationTime);
         } catch (InterruptedException e) {
@@ -112,5 +113,90 @@ public abstract class Algorithm {
      */
     protected void displayOriginalList() {
         mercury.showMessage("Original elements: " + elements + "\n");
+    }
+
+    protected void displayCurrentList() {
+        if (isNumeric) {
+            List<Integer> integerList = elements.stream()
+                    .map(Integer::parseInt)
+                    .toList();
+
+            int min = Collections.min(integerList);
+            int max = Collections.max(integerList);
+            int range = max - min;
+            int row = 0;
+
+            for (int element : integerList) {
+                int pos = element - min + 1;
+                int count = Math.round((float)pos / (float)range * 80.0F);
+                System.out.printf("[%d]:\t%s %s\n", row++, "*".repeat(count), element);
+            }
+
+        }
+        else {
+            List<Integer> charValues = elements.stream()
+                    .map(element -> mapCharToValue(element.charAt(0))) // Mapeia o primeiro caractere
+                    .toList();
+
+            int min = Collections.min(charValues);
+            int max = Collections.max(charValues);
+            int range = max - min;
+            int row = 0;
+
+            for (String element : elements) {
+                char ch = element.charAt(0);
+                int pos = mapCharToValue(ch) - min + 1;
+                int count = Math.round((float)pos / (float)range * 80.0F);
+                System.out.printf("[%d]:\t%s %s\n", row++, "*".repeat(count), element);
+            }
+
+        }
+        System.out.println();
+
+    }
+
+    private int mapCharToValue(char ch) {
+        if (ch >= 'A' && ch <= 'Z') {
+            return ch - 'A'; // Maiúsculas de 0 a 25
+        } else if (ch >= 'a' && ch <= 'z') {
+            return 26 + (ch - 'a'); // Minúsculas de 26 a 51
+        }
+        return -1; // Caso não seja uma letra (opcional)
+    }
+
+    public List<String> getElements() {
+        return elements;
+    }
+
+    public void setElements(List<String> elements) {
+        this.elements = elements;
+    }
+
+    public boolean isAscending() {
+        return isAscending;
+    }
+
+    public int getIterationTime() {
+        return iterationTime;
+    }
+
+    public int getIterationCount() {
+        return iterationCount;
+    }
+
+    public void setIterationCount(int iterationCount) {
+        this.iterationCount = iterationCount;
+    }
+
+    public Mercury getMercury() {
+        return mercury;
+    }
+
+    public void setMercury(Mercury mercury) {
+        this.mercury = mercury;
+    }
+
+    public boolean isNumeric() {
+        return isNumeric;
     }
 }
