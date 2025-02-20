@@ -71,6 +71,8 @@ java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<
         + sort() void
         # displayOriginalList() void
         # displayCurrentState() void
+        # displayCurrentList() void
+        - mapCharToValue(char) int
     }
     class AlgorithmConfigs {
         + AlgorithmConfigs(List~String~, String, int, boolean)
@@ -295,3 +297,8 @@ java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<
     VisionRenderer "1" *--> "mercury 1" Mercury
     VisionRenderer  ..>  SortingVisualizer~T~ : «create»
    ```
+
+   ## 📌 ChangeLog
+
+**[20/02/2025]**
+- Added the interface in the terminal
