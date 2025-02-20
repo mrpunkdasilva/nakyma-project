@@ -7,12 +7,13 @@ generate_changelog:
   before_script:
     - apk add git
   script:
-    - git fetch --tags
-    - LAST_TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
-    - echo "Última tag encontrada: $LAST_TAG"
-    - git log --pretty=format:"- %s" "$LAST_TAG"..HEAD > CHANGELOG.md
-    - git add CHANGELOG.md
-    - git commit -m "Atualizando changelog para $LAST_TAG"
-    - git push origin main
+    - |
+      git fetch --tags
+      LAST_TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+      echo "Última tag encontrada: $LAST_TAG"
+      git log --pretty=format:"- %s" "$LAST_TAG"..HEAD > CHANGELOG.md
+      git add CHANGELOG.md
+      git commit -m "Atualizando changelog para $LAST_TAG"
+      git push origin main
   only:
     - main
