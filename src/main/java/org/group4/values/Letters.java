@@ -3,7 +3,8 @@ package org.group4.values;
 import java.util.Random;
 
 public enum Letters {
-    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;
+    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+    a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p ,q , r, s, t, u, v, w, x, y, z;
 
     /**
      * Returns the corresponding Letters enum for a given character.
@@ -14,7 +15,7 @@ public enum Letters {
     public static Letters fromValue(Character letter) {
         if (letter == null) return null;
         try {
-            return Letters.valueOf(Character.toUpperCase(letter) + "");
+            return Letters.valueOf(letter + "");
         } catch (IllegalArgumentException e) {
             return null; // Retorna null se não encontrar uma letra correspondente.
         }

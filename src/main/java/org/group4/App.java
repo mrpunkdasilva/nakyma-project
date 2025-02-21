@@ -41,8 +41,12 @@ public class App {
         vision.setConfigs(configs);
 
         vision.loading();
-        vision.sleep(500);
+        vision.sleep(300);
         vision.clear(100);
+
+        if (configs.a().equalsIgnoreCase("s")) {
+            mercury.showError("Algoritmo não implementado ainda!");
+        }
 
         vision.renderHeader();
         vision.clear(1);
@@ -62,6 +66,9 @@ public class App {
             case "b" -> {
                 BubbleSort bubbleSort = new BubbleSort(algorithmConfigs);
                 bubbleSort.sort();
+            }
+            case "s" -> {
+               mercury.showError("Algoritmo não implementado ainda!");
             }
             default -> mercury.showError("Algorithm not supported.");
         }
