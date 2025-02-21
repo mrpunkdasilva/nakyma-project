@@ -1,8 +1,7 @@
 package org.group4.values;
 
-/**
- * Enum representing ANSI color codes for terminal text and background.
- */
+import java.util.Random;
+
 public enum AsciiColor {
     // Default ANSI text colors
     BLACK("30"),
@@ -35,6 +34,8 @@ public enum AsciiColor {
     private static final String ASCII_MARK_END = ASCII_MARK_INIT + RESET.code + "m";
     private static final String ASCII_SEPARATOR = ";";
     private static final String ASCII_TOKEN = "m";
+
+    private static final Random RANDOM = new Random();
 
     private final String code;
 
@@ -103,5 +104,14 @@ public enum AsciiColor {
         }
         styleCodes.append(ASCII_TOKEN);
         return styleCodes + text + ASCII_MARK_END;
+    }
+
+    /**
+     * Returns a random text color.
+     * @return A random AsciiColor for text.
+     */
+    public static AsciiColor randomTextColor() {
+        AsciiColor[] colors = { RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE };
+        return colors[RANDOM.nextInt(colors.length)];
     }
 }

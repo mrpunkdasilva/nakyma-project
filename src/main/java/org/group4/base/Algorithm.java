@@ -63,10 +63,7 @@ public abstract class Algorithm {
      * Displays the current state of the algorithm, including the iteration count and the current elements.
      */
     protected void displayCurrentState() {
-        mercury.showMessage(
-                AsciiColor.applyMultiple("ᓚᘏᗢ ", AsciiColor.YELLOW).repeat(iterationCount) + "\n"  +
-                        "Iteration " + ": "
-        );
+        mercury.showMessage("Iteration " + ": ");
         displayCurrentList();
         try {
             Thread.sleep(iterationTime);
@@ -134,7 +131,7 @@ public abstract class Algorithm {
             for (int element : integerList) {
                 int pos = element - min + 1;
                 int count = Math.round((float)pos / (float)range * 80.0F);
-                System.out.printf("[%d]:\t%s %s\n", row++, "*".repeat(count), element);
+                System.out.printf("[%d]:\t%s %s\n", row++, AsciiColor.randomTextColor().apply("*").repeat(count), element);
             }
 
         }
@@ -152,12 +149,12 @@ public abstract class Algorithm {
                 char ch = element.charAt(0);
                 int pos = mapCharToValue(ch) - min + 1;
                 int count = Math.round((float)pos / (float)range * 80.0F);
-                System.out.printf("[%d]:\t%s %s\n", row++, "*".repeat(count), element);
+                System.out.printf("[%d]:\t%s %s\n", row++, AsciiColor.randomTextColor().apply("*").repeat(count), element);
             }
 
         }
-        System.out.println();
 
+        System.out.println();
     }
 
     /**
