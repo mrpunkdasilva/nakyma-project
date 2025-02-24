@@ -23,5 +23,6 @@ generate_changelog:
       git add CHANGELOG.md
       git commit -m "Atualizando changelog para $LAST_TAG"
       git push origin main
+
   only:
     - main
