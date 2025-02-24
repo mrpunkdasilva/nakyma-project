@@ -7,29 +7,28 @@ generate_changelog:
   before_script:
     - apk add git
   script:
-    - git config --global user.email "ci-bot@gitlab.com"
-    - git config --global user.name "GitLab CI"
+    |-
+    git config --global user.email "ci-bot@gitlab.com"
+    git config --global user.name "GitLab CI"
 
-    - git checkout main
-    - git fetch --tags
-    - LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+    git checkout main  # Alterna para o branch main antes do push
+    git fetch --tags
+    LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 
-    - |
-      if [ -z "$LAST_TAG" ]; then
-        echo "Nenhuma tag encontrada. Criando um changelog inicial." &&
-        git log --pretty=format:"- %s" > CHANGELOG.md;
-      else
-        echo "Última tag encontrada: $LAST_TAG" &&
-        git log --pretty=format:"- %s" "$LAST_TAG"..HEAD > CHANGELOG.md;
-      fi
-    - cat CHANGELOG.md
+    if [ -z "$LAST_TAG" ]; then
+      echo "Nenhuma tag encontrada. Criando um changelog inicial.";
+      git log --pretty=format:"- %s" > CHANGELOG.md;
+    else
+      echo "Última tag encontrada: $LAST_TAG";
+      git log --pretty=format:"- %s" "$LAST_TAG"..HEAD > CHANGELOG.md;
+    fi
 
-    - git add CHANGELOG.md
-    - git commit -m "Atualizando changelog para $LAST_TAG" || echo "Nada para commitar"
+    cat CHANGELOG.md
 
-    - git push https://oauth2:${CI_JOB_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git main
+    git add CHANGELOG.md
+    git commit -m "Atualizando changelog para $LAST_TAG"
 
-
+    git push origin main  # Garante que está empurrando para o branch correto
  
   only:
     - main
