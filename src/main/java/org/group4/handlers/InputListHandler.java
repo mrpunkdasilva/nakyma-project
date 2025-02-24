@@ -108,23 +108,24 @@ public class InputListHandler {
     }
 
     /**
-     * Converts a list of strings to a list of integers.
-     * This method attempts to parse each string in the input list as an integer.
-     * If a string cannot be parsed, it is skipped without throwing an exception.
-     *
-     * @param list The list of strings to be converted to integers.
-     * @return A list of integers containing the successfully parsed values.
-     *         The returned list is the same as the class field 'listAsInteger'.
+     * Converts a list of strings to an array of integers.
+     * @param inputList the list of strings to be converted
+     * @return an array of integers
      */
-    public List<Integer> convertListStringToIntegers(List<String> list) {
-        for(String item : list) {
-            try {
-                this.listAsInteger.add(Integer.parseInt(item));
-            } catch (NumberFormatException e) {
-                continue;
-            }
-        }
+    public Integer[] toIntArray(List<String> inputList) {
+        return inputList.stream()
+                .map(Integer::parseInt)
+                .toArray(Integer[]::new);
+    }
 
-        return this.listAsInteger;
+    /**
+     * Converts a list of strings to an array of characters.
+     * @param inputList the list of strings to be converted
+     * @return an array of characters
+     */
+    public Character[] toCharArray(List<String> inputList) {
+        return inputList.stream()
+                .map(str -> str.charAt(0))
+                .toArray(Character[]::new);
     }
 }

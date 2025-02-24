@@ -83,7 +83,7 @@ public abstract class Algorithm {
         if (isNumeric) {
             int numA = Integer.parseInt(a);
             int numB = Integer.parseInt(b);
-            return isAscending ? numA <= numB : numA > numB;
+            return isAscending == (numA <= numB);
         }
 
         if (isAscending) return a.compareTo(b) < 0;
@@ -130,8 +130,8 @@ public abstract class Algorithm {
 
             for (int element : integerList) {
                 int pos = element - min + 1;
-                int count = Math.round((float)pos / (float)range * 80.0F);
-                System.out.printf("[%d]:\t%s %s\n", row++, AsciiColor.randomTextColor().apply("*").repeat(count), element);
+                int count = randomNumberCount((float) pos, (float) range);
+                System.out.printf("[%d]:\t%s %s\n", row++, getElementFormated(count), element);
             }
 
         }
@@ -148,13 +148,38 @@ public abstract class Algorithm {
             for (String element : elements) {
                 char ch = element.charAt(0);
                 int pos = mapCharToValue(ch) - min + 1;
-                int count = Math.round((float)pos / (float)range * 80.0F);
-                System.out.printf("[%d]:\t%s %s\n", row++, AsciiColor.randomTextColor().apply("*").repeat(count), element);
+                int count = randomNumberCount((float)pos, (float)range);
+                System.out.printf("[%d]:\t%s %s\n", row++, getElementFormated(count), element);
             }
 
         }
 
         System.out.println();
+    }
+
+    /**
+     * Calculates an integer value based on the provided position and range.
+     * The value is obtained by dividing the position by the range, multiplying by the maximum value (80.0),
+     * and rounding the result to the nearest integer.
+     *
+     * @param pos   The current position, represented as a float value.
+     * @param range The maximum range, represented as a float value.
+     * @return An integer value rounded based on the formula: Math.round(pos / range * number).
+     */
+    private int randomNumberCount(float pos, float range) {
+        float maxValue = 80.0F;
+        return Math.round(pos / range * maxValue);
+    }
+
+    /**
+     * Returns a formatted string consisting of a cat face emoji ("😺") repeated a specific number of times.
+     * Each occurrence of the emoji is randomly colored using an ASCII text color function.
+     *
+     * @param count The number of times the emoji should be repeated.
+     * @return A formatted string containing the repeated and colored emoji.
+     */
+    private String getElementFormated(int count) {
+        return AsciiColor.randomTextColor().apply("\uD83D\uDE3A").repeat(count);
     }
 
     /**
