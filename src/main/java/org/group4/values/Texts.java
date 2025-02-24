@@ -53,10 +53,10 @@ public enum Texts {
             """),
     ERR_LENGTH_LIST("Os valores para a lista aleatória é de 1-40."),
     ERR_SOURCE_LIST("Fonte de valor inválido! Deve ser passado: \n- (R) para valores aleatorios \n- (M) para valores que você deseja fornecer."),
-    ERR_DUPLICATES("Não é possível ordenar uma lista com valores duplicados!"),
     ERR_ITERATION_TIME("Tempo de pausa inválido! Informe um tempo entre 100 e 1000 milissegundos."),
-    ERROR_ICON("""      
-          
+    ERR_RANDOM_LENGTH_LIST("O tamanho da lista randómica é obrigatório e deve ser um número inteiro entre 1 e 40"),
+    ERROR_ICON("""
+     
      ⢰⠲⢄⡀⠀⠀⠀⠀⠀⡏⠒⠤⡀⠀⠀⠀⠀
     ⠀⠘⡄⣀⠙⣦⠀⠀⣀⣰⡣⢸⠢⡈⠢⡀⠀⠀⠀
     ⠀⠀⠸⡰⡰⠈⠉⠉⠀⠀⠀⠈⠑⠰⡀⠘⡄⠀⠀

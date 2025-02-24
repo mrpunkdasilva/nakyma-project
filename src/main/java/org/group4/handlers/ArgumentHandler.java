@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class ArgumentHandler implements IArgumentHandler {
 
-    private final Mercury mercury;
-    private final GenerateList generateList;
+    private final Mercury mercury = new Mercury();
+    private final GenerateList generateList = new GenerateList();
+    private final ValidateHandler validate = new ValidateHandler();
     private final String[] entryArguments;
-    private final ValidateHandler validate;
 
     /**
      * Constructor for the ArgumentHandler class.
@@ -27,9 +27,6 @@ public class ArgumentHandler implements IArgumentHandler {
      * @param entryArguments The command-line arguments provided when running the program.
      */
     public ArgumentHandler(String[] entryArguments) {
-        this.generateList = new GenerateList();
-        this.mercury = new Mercury();
-        this.validate = new ValidateHandler();
         this.entryArguments = entryArguments;
     }
 
@@ -58,14 +55,20 @@ public class ArgumentHandler implements IArgumentHandler {
 
         if (!validate.validateSourceListValues(getArgumentByKey("in"))) {
             mercury.showError(Texts.ERR_SOURCE_LIST.getText());
-
-            if  (getArgumentByKey("in").equalsIgnoreCase("m")) {
-                if (!validate.validateUserInput(getArgumentByKey("v"), getArgumentByKey("t"))) {
-                    mercury.showError(Texts.ERR_INPUT_USER_LIST.getText());
+        } else {
+            switch(getArgumentByKey("in")) {
+                case "m" -> {
+                    if (!validate.validateUserInput(getArgumentByKey("v"), getArgumentByKey("t"))) {
+                        mercury.showError(Texts.ERR_INPUT_USER_LIST.getText());
+                    }
                 }
-            } else {
-                if (!validate.validateLengthList(getArgumentByKey("r"))) {
-                    mercury.showError(Texts.ERR_RANGE_NUMERIC.getText());
+                case "r" -> {
+                    if (!validate.validateLengthList(getArgumentByKey("r"))) {
+                        mercury.showError(Texts.ERR_RANDOM_LENGTH_LIST.getText());
+                    }
+                }
+                default -> {
+                    mercury.showError(Texts.ERR_SOURCE_LIST.getText());
                 }
             }
         }
