@@ -5,6 +5,7 @@ import org.group4.sortAlgorithms.BubbleSort;
 import org.group4.sortAlgorithms.QuickSort;
 import org.group4.config.AppConfigs;
 import org.group4.handlers.ArgumentHandler;
+import org.group4.sortAlgorithms.SelectionSort;
 import org.group4.ui.VisionRenderer;
 import org.group4.utils.Mercury;
 
@@ -17,6 +18,7 @@ public class App {
     private final VisionRenderer vision;
     private final ArgumentHandler argumentHandler;
     private final Mercury mercury = new Mercury();
+    private AlgorithmConfigs algorithmConfigs;
 
 
     /**
@@ -37,6 +39,7 @@ public class App {
         vision.clear(50);
 
         argumentHandler.verify();
+
         configs = argumentHandler.createAppConfigs();
         vision.setConfigs(configs);
 
@@ -44,20 +47,24 @@ public class App {
         vision.sleep(300);
         vision.clear(100);
 
-        if (configs.a().equalsIgnoreCase("s")) {
-            mercury.showError("Algoritmo não implementado ainda!");
-        }
-
         vision.renderHeader();
         vision.clear(1);
 
-        AlgorithmConfigs algorithmConfigs = new AlgorithmConfigs(
+        buildAlgorithmConfigs();
+
+        implementAlgorithm();
+    }
+
+    public void buildAlgorithmConfigs() {
+        algorithmConfigs = new AlgorithmConfigs(
                 configs.inputList(),
                 configs.o(),
                 configs.s(),
                 configs.typeList().equalsIgnoreCase("n")
         );
+    }
 
+    public void implementAlgorithm() {
         switch (configs.a()) {
             case "q" -> {
                 QuickSort quickSort = new QuickSort(algorithmConfigs);
@@ -68,11 +75,10 @@ public class App {
                 bubbleSort.sort();
             }
             case "s" -> {
-               mercury.showError("Algoritmo não implementado ainda!");
+                SelectionSort selectionSort = new SelectionSort(algorithmConfigs);
+                selectionSort.sort();
             }
             default -> mercury.showError("Algorithm not supported.");
         }
-
-
     }
 }
