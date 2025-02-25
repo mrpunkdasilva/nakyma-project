@@ -1,4 +1,4 @@
-package main.java.org.group4.sortAlgorithms;
+package org.group4.sortAlgorithms;
 
 import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
