@@ -1,5 +1,6 @@
 package org.group4;
 
+import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
 import org.group4.sortAlgorithms.BubbleSort;
 import org.group4.sortAlgorithms.QuickSort;
@@ -20,6 +21,7 @@ public class App {
     private final ArgumentHandler argumentHandler;
     private final Mercury mercury = new Mercury();
     private AlgorithmConfigs algorithmConfigs;
+    private Algorithm algorithm;
 
 
     /**
@@ -45,7 +47,7 @@ public class App {
         vision.setConfigs(configs);
 
         vision.loading();
-        vision.sleep(300);
+        vision.sleep(100);
         vision.clear(100);
 
         vision.renderHeader();
@@ -66,26 +68,24 @@ public class App {
     }
 
     public void implementAlgorithm() {
-        switch (configs.a()) {
-            case "q" -> {
-                QuickSort quickSort = new QuickSort(algorithmConfigs);
-                SortingObserver observer = new SortingObserver(quickSort);
-                quickSort.setObserver(observer);
-                quickSort.sort();
-            }
-            case "b" -> {
-                BubbleSort bubbleSort = new BubbleSort(algorithmConfigs);
-                SortingObserver observer = new SortingObserver(bubbleSort);
-                bubbleSort.setObserver(observer);
-                bubbleSort.sort();
-            }
-            case "s" -> {
-                SelectionSort selectionSort = new SelectionSort(algorithmConfigs);
-                SortingObserver observer = new SortingObserver(selectionSort);
-                selectionSort.setObserver(observer);
-                selectionSort.sort();
-            }
-            default -> mercury.showError("Algorithm not supported.");
+        algorithm = switch (configs.a()) {
+            case "q" -> new QuickSort(algorithmConfigs);
+            case "b" -> new BubbleSort(algorithmConfigs);
+            case "s" -> new SelectionSort(algorithmConfigs);
+            default -> null;
+        };
+
+        if (algorithm != null) {
+            startAlgorithm();
+        } else {
+            mercury.showError("Invalid algorithm type.");
         }
     }
+
+    public void startAlgorithm() {
+         SortingObserver observer = new SortingObserver(algorithm);
+         algorithm.setObserver(observer);
+         algorithm.sort();
+    }
+
 }
