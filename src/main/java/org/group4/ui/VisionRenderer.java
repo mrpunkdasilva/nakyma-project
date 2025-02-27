@@ -8,7 +8,6 @@ import org.group4.values.AsciiColor;
 import org.group4.values.Texts;
 import org.group4.utils.Mercury;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**

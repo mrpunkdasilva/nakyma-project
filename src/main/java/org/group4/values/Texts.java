@@ -2,8 +2,6 @@ package org.group4.values;
 
 import org.group4.config.AppConfigs;
 
-import java.util.ArrayList;
-
 public enum Texts {
 
     NAKYMA_LOGO(

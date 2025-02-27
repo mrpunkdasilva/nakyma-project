@@ -3,11 +3,9 @@ package org.group4.handlers;
 import org.group4.config.AppConfigs;
 import org.group4.base.IArgumentHandler;
 import org.group4.utils.GenerateList;
-import org.group4.values.AsciiColor;
 import org.group4.values.Texts;
 import org.group4.utils.Mercury;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,7 +86,7 @@ public class ArgumentHandler implements IArgumentHandler {
     public AppConfigs createAppConfigs() {
         int randomLengthList = getOptionalIntArgumentByKey("r", -1);
         String typeList = getArgumentByKey("t");
-        String inputUser = "";
+        String inputUser;
 
         if (getArgumentByKey("in").equalsIgnoreCase("m")) {
             inputUser = getArgumentByKey("v");
