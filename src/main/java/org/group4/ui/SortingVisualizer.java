@@ -8,7 +8,7 @@ import java.util.Random;
 
 
 // TODO: DOCUMENTAR A CLASSE
-public class SortingVisualizer<T extends Comparable<T>> extends JPanel {
+public class SortingVisualizer<T extends Comparable<T>> extends JPanel{
     private T[] array; // Array genérico
     private Color[] colors;
     public int DELAY = 500; // Delay em milissegundos (0.5s)
@@ -21,6 +21,7 @@ public class SortingVisualizer<T extends Comparable<T>> extends JPanel {
         setPreferredSize(new Dimension(600, 400)); // Tamanho da janela
         generateRandomColors();
     }
+
 
     private void generateRandomColors() {
         Random random = new Random();

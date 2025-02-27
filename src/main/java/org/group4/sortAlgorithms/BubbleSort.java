@@ -42,7 +42,7 @@ public class BubbleSort extends Algorithm {
                 }
             }
             iterationCount++;
-            displayCurrentState();
+            notifyObserver(); // Notifies the observer instead of directly calling displayCurrentState()
             if (!swapped) break; // Optimization: stop if already sorted
         }
     }
