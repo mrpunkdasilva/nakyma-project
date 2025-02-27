@@ -11,6 +11,26 @@ import java.util.List;
  * This is an abstract class representing an algorithm. It provides common attributes and methods for sorting algorithms.
  */
 public abstract class Algorithm {
+    private IObserver observer;
+
+    /**
+     * Sets an observer to listen for updates in the algorithm's state.
+     *
+     * @param observer The observer instance to be notified.
+     */
+
+    public void setObserver(IObserver observer) {
+        this.observer = observer;
+    }
+    /**
+     * Notifies the observer of the algorithm's current state.
+     */
+    protected void notifyObserver() {
+        if (observer != null) {
+            observer.update();
+        }
+    }
+
 
     /**
      * The elements of strings to be sorted.
@@ -62,7 +82,7 @@ public abstract class Algorithm {
     /**
      * Displays the current state of the algorithm, including the iteration count and the current elements.
      */
-    protected void displayCurrentState() {
+    public void displayCurrentState() {
         mercury.showMessage("Iteration " + ": ");
         displayCurrentList();
         try {

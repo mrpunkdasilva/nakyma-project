@@ -6,6 +6,7 @@ import org.group4.sortAlgorithms.QuickSort;
 import org.group4.config.AppConfigs;
 import org.group4.handlers.ArgumentHandler;
 import org.group4.sortAlgorithms.SelectionSort;
+import org.group4.ui.SortingObserver;
 import org.group4.ui.VisionRenderer;
 import org.group4.utils.Mercury;
 
@@ -68,14 +69,20 @@ public class App {
         switch (configs.a()) {
             case "q" -> {
                 QuickSort quickSort = new QuickSort(algorithmConfigs);
+                SortingObserver observer = new SortingObserver(quickSort);
+                quickSort.setObserver(observer);
                 quickSort.sort();
             }
             case "b" -> {
                 BubbleSort bubbleSort = new BubbleSort(algorithmConfigs);
+                SortingObserver observer = new SortingObserver(bubbleSort);
+                bubbleSort.setObserver(observer);
                 bubbleSort.sort();
             }
             case "s" -> {
                 SelectionSort selectionSort = new SelectionSort(algorithmConfigs);
+                SortingObserver observer = new SortingObserver(selectionSort);
+                selectionSort.setObserver(observer);
                 selectionSort.sort();
             }
             default -> mercury.showError("Algorithm not supported.");

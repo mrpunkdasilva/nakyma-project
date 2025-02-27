@@ -46,7 +46,7 @@ public class SelectionSort extends Algorithm {
             }
 
             iterationCount++;
-            displayCurrentState();
+            notifyObserver(); // Notifies the observer instead of directly calling displayCurrentState()
         }
     }
 }

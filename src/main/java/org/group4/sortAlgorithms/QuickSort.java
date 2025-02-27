@@ -66,7 +66,7 @@ public class QuickSort extends Algorithm {
         }
         swap(i + 1, high);
         iterationCount++;
-        displayCurrentState();
+        notifyObserver(); // Notifies the observer instead of directly calling displayCurrentState()
         return i + 1;
     }
 }

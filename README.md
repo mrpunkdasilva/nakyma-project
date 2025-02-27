@@ -302,3 +302,10 @@ java Main a=<algorithm> t=<list_type> o=<order> in=<input_type> v="<values>" s=<
 
 **[20/02/2025]**
 - Added the interface in the terminal
+
+**[27/05/2025]** Mariah Bócoli
+- I decoupled the print from the algorithms so that they were only responsible for sorting and created/changed the following files:
+- IObserver ➝ Sets the rule for anyone who wants to watch the algorithm.
+- SortingObserver ➝ Keeps an eye on the algorithm and shows changes.
+- Algorithm ➝ Gets a “phone” to alert anyone listening.
+- QuickSort, BubbleSort, SelectionSort ➝ Instead of showing the sorting, it just sorts and notifies the Observer.
