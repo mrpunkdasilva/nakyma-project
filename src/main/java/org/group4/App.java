@@ -35,8 +35,8 @@ public class App {
     }
 
     /**
-     * Runs the application.
-     */
+     * Runs the application by executing a series of steps to set up and perform the sorting algorithm.
+    */
     public void run() {
         vision.renderWelcome();
         vision.clear(50);
@@ -58,6 +58,19 @@ public class App {
         implementAlgorithm();
     }
 
+    
+        /**
+     * Builds and initializes the AlgorithmConfigs object based on the current application configurations.
+     * This method sets up the necessary parameters for the sorting algorithm to be executed.
+     * 
+     * The AlgorithmConfigs object is created with the following parameters:
+     * @see AlgorithmConfigs
+     * 
+     * - inputList: The list of elements to be sorted
+     * - o: The order of sorting (ascending or descending)
+     * - s: The step size for the sorting process
+     * - isNumeric: Whether the list contains numeric values (true) or not (false)
+     */
     public void buildAlgorithmConfigs() {
         algorithmConfigs = new AlgorithmConfigs(
                 configs.inputList(),
@@ -67,6 +80,16 @@ public class App {
         );
     }
 
+     /**
+     * Implements the sorting algorithm based on the user's configuration.
+     * This method initializes the appropriate sorting algorithm
+     * according to the configuration, and then starts the algorithm execution.
+      * *
+     * @throws IllegalStateException if the mercury object is not properly initialized
+     * @see QuickSort
+     * @see BubbleSort
+     * @see SelectionSort
+     */
     public void implementAlgorithm() {
         algorithm = switch (configs.a()) {
             case "q" -> new QuickSort(algorithmConfigs);
@@ -75,13 +98,20 @@ public class App {
             default -> null;
         };
 
-        if (algorithm != null) {
-            startAlgorithm();
-        } else {
+        if (algorithm == null) {
             mercury.showError("Invalid algorithm type.");
         }
+
+        startAlgorithm();
     }
 
+    /**
+     * Starts the selected sorting algorithm and initiates the sorting process.
+     *
+     * @throws IllegalArgumentException if the selected algorithm is invalid
+     * @see Algorithm
+     * @see SortingObserver
+     */
     public void startAlgorithm() {
          SortingObserver observer = new SortingObserver(algorithm);
          algorithm.setObserver(observer);

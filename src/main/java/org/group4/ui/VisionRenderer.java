@@ -107,7 +107,7 @@ public class VisionRenderer implements IVisionRenderer {
      */
     public void loading() {
         mercury.showMessage(Texts.LOADING.getText());
-        renderProgressBar(10, 20);
+        renderProgressBar(10, 10);
     }
 
     /**
@@ -120,7 +120,7 @@ public class VisionRenderer implements IVisionRenderer {
             int progress = (i * barLength) / totalSteps;
             String bar = buildProgressBar(barLength, progress);
             System.out.print(AsciiColor.applyMultiple(bar, AsciiColor.BOLD, AsciiColor.GREEN));
-            sleep(500);
+            sleep(200);
         }
     }
 

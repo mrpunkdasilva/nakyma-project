@@ -42,7 +42,7 @@ public class ArgumentHandler implements IArgumentHandler {
         }
 
         if (!validate.validateTypeSortAlgorithm(getArgumentByKey("a"))) {
-            System.out.println(AsciiColor.applyMultiple(Texts.ERR_SORT_ALGO.getText()));
+            mercury.showError(Texts.ERR_SORT_ALGO.getText());
         }
 
         if (!validate.validateTypeList(getArgumentByKey("t"))) {
