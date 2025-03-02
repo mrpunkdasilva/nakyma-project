@@ -1,5 +1,6 @@
 package org.group4;
 
+import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
 import org.group4.sortAlgorithms.BubbleSort;
 import org.group4.sortAlgorithms.QuickSort;
@@ -20,6 +21,7 @@ public class App {
     private final ArgumentHandler argumentHandler;
     private final Mercury mercury = new Mercury();
     private AlgorithmConfigs algorithmConfigs;
+    private Algorithm algorithm;
 
 
     /**
@@ -33,8 +35,8 @@ public class App {
     }
 
     /**
-     * Runs the application.
-     */
+     * Runs the application by executing a series of steps to set up and perform the sorting algorithm.
+    */
     public void run() {
         vision.renderWelcome();
         vision.clear(50);
@@ -45,7 +47,7 @@ public class App {
         vision.setConfigs(configs);
 
         vision.loading();
-        vision.sleep(300);
+        vision.sleep(100);
         vision.clear(100);
 
         vision.renderHeader();
@@ -56,6 +58,19 @@ public class App {
         implementAlgorithm();
     }
 
+    
+        /**
+     * Builds and initializes the AlgorithmConfigs object based on the current application configurations.
+     * This method sets up the necessary parameters for the sorting algorithm to be executed.
+     * 
+     * The AlgorithmConfigs object is created with the following parameters:
+     * @see AlgorithmConfigs
+     * 
+     * - inputList: The list of elements to be sorted
+     * - o: The order of sorting (ascending or descending)
+     * - s: The step size for the sorting process
+     * - isNumeric: Whether the list contains numeric values (true) or not (false)
+     */
     public void buildAlgorithmConfigs() {
         algorithmConfigs = new AlgorithmConfigs(
                 configs.inputList(),
@@ -65,27 +80,42 @@ public class App {
         );
     }
 
+     /**
+     * Implements the sorting algorithm based on the user's configuration.
+     * This method initializes the appropriate sorting algorithm
+     * according to the configuration, and then starts the algorithm execution.
+      * *
+     * @throws IllegalStateException if the mercury object is not properly initialized
+     * @see QuickSort
+     * @see BubbleSort
+     * @see SelectionSort
+     */
     public void implementAlgorithm() {
-        switch (configs.a()) {
-            case "q" -> {
-                QuickSort quickSort = new QuickSort(algorithmConfigs);
-                SortingObserver observer = new SortingObserver(quickSort);
-                quickSort.setObserver(observer);
-                quickSort.sort();
-            }
-            case "b" -> {
-                BubbleSort bubbleSort = new BubbleSort(algorithmConfigs);
-                SortingObserver observer = new SortingObserver(bubbleSort);
-                bubbleSort.setObserver(observer);
-                bubbleSort.sort();
-            }
-            case "s" -> {
-                SelectionSort selectionSort = new SelectionSort(algorithmConfigs);
-                SortingObserver observer = new SortingObserver(selectionSort);
-                selectionSort.setObserver(observer);
-                selectionSort.sort();
-            }
-            default -> mercury.showError("Algorithm not supported.");
+        algorithm = switch (configs.a()) {
+            case "q" -> new QuickSort(algorithmConfigs);
+            case "b" -> new BubbleSort(algorithmConfigs);
+            case "s" -> new SelectionSort(algorithmConfigs);
+            default -> null;
+        };
+
+        if (algorithm == null) {
+            mercury.showError("Invalid algorithm type.");
         }
+
+        startAlgorithm();
     }
+
+    /**
+     * Starts the selected sorting algorithm and initiates the sorting process.
+     *
+     * @throws IllegalArgumentException if the selected algorithm is invalid
+     * @see Algorithm
+     * @see SortingObserver
+     */
+    public void startAlgorithm() {
+         SortingObserver observer = new SortingObserver(algorithm);
+         algorithm.setObserver(observer);
+         algorithm.sort();
+    }
+
 }

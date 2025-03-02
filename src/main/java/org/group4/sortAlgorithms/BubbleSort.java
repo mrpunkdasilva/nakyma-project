@@ -35,14 +35,18 @@ public class BubbleSort extends Algorithm {
 
         for (int i = 0; i < n - 1; i++) {
             swapped = false;
+
             for (int j = 0; j < n - i - 1; j++) {
                 if (!compare(elements.get(j), elements.get(j + 1))) {
+                    notifyObserver(); // Notifies the observer instead of directly calling displayCurrentState()
+
                     swap(j, j + 1);
                     swapped = true;
                 }
+
+                    iterationCount++;
             }
-            iterationCount++;
-            notifyObserver(); // Notifies the observer instead of directly calling displayCurrentState()
+
             if (!swapped) break; // Optimization: stop if already sorted
         }
     }

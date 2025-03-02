@@ -2,8 +2,6 @@ package org.group4.values;
 
 import org.group4.config.AppConfigs;
 
-import java.util.ArrayList;
-
 public enum Texts {
 
     NAKYMA_LOGO(
@@ -37,10 +35,10 @@ public enum Texts {
     ),
     PRESS_ENTER("\t\t\t\t\tPress <enter> to start ᓚᘏᗢ"),
     EQUALS("="),
-    ERR_SORT_ALGO("Informe um tipo de algoritmo válido: \nBubble Sort (B) \nMerge Sort (M) \nQuick Sort (Q)!"),
+    ERR_SORT_ALGO("\tInforme um tipo de algoritmo válido: \n\t- Bubble Sort (B) \n\t- Quick Sort (Q) \n\t- Selection Sort (S)\n"),
     ERR_QUANTI_MIN_ARGS("Quantidade minima de argumentos incorretos!"),
     ERR_TYPE_LIST("Informe um tipo de lista válido: \nNuméricos (N) \nCaracteres (C)!"),
-    ERR_ORDER("Informe uma ordem de ordenação válida: \nCrescente (ZA) \nDecrescente (AZ)!"),
+    ERR_ORDER("Informe uma ordem de ordenação válida: \n- Crescente (ZA) \n- Decrescente (AZ)!"),
     ERR_RANGE_NUMERIC("Números entre -1000 e 1000."),
     ERR_RANGE_CHARACTERS("Caracteres entre 'a' e 'z'."),
     ERR_INPUT_USER_LIST("Valores inválidos para a LISTA FORNECIDA! Você só pode informar esses valores SEPARADOS POR VIRGULA:\n" +

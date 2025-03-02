@@ -8,7 +8,6 @@ import org.group4.values.AsciiColor;
 import org.group4.values.Texts;
 import org.group4.utils.Mercury;
 
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -36,6 +35,7 @@ public class VisionRenderer implements IVisionRenderer {
      */
     @Override
     public void renderPressStart() {
+        Aengus.adjustVolume(0.5f);
         stopAndPlayMusic("src/main/resources/loading.wav", -1);
         mercury.showMessage("\n\n" + AsciiColor.applyMultiple(Texts.PRESS_ENTER.getText(), AsciiColor.ITALIC, AsciiColor.YELLOW));
         scanner.nextLine();
@@ -106,7 +106,7 @@ public class VisionRenderer implements IVisionRenderer {
      */
     public void loading() {
         mercury.showMessage(Texts.LOADING.getText());
-        renderProgressBar(10, 20);
+        renderProgressBar(10, 10);
     }
 
     /**
@@ -119,7 +119,7 @@ public class VisionRenderer implements IVisionRenderer {
             int progress = (i * barLength) / totalSteps;
             String bar = buildProgressBar(barLength, progress);
             System.out.print(AsciiColor.applyMultiple(bar, AsciiColor.BOLD, AsciiColor.GREEN));
-            sleep(500);
+            sleep(200);
         }
     }
 
