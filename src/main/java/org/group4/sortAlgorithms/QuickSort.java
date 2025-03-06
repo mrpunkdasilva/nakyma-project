@@ -2,7 +2,6 @@ package org.group4.sortAlgorithms;
 
 import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
-import org.group4.config.AppConfigs;
 
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class QuickSort extends Algorithm {
      * Implements the main recursive logic of QuickSort.
      * Sorts the subarray between the low and high indexes.
      *
-     * @param low Initial index of the subarray
+     * @param low  Initial index of the subarray
      * @param high Final index of the subarray
      */
     private void quickSort(int low, int high) {
@@ -50,7 +49,7 @@ public class QuickSort extends Algorithm {
      * Rearranges the elements so that all those smaller than the pivot are on the left,
      * and all the larger ones on the right.
      *
-     * @param low Initial index of the subarray
+     * @param low  Initial index of the subarray
      * @param high Final index of the subarray
      * @return Final index of the pivot after partitioning
      */
@@ -59,14 +58,18 @@ public class QuickSort extends Algorithm {
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
+            iterationCount++;
+            notifyObserver();
+
             if (compare(elements.get(j), pivot)) {
                 i++;
                 swap(i, j);
             }
         }
+
         swap(i + 1, high);
         iterationCount++;
-        notifyObserver(); // Notifies the observer instead of directly calling displayCurrentState()
+        notifyObserver();
         return i + 1;
     }
 }
