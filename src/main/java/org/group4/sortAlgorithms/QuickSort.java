@@ -59,17 +59,15 @@ public class QuickSort extends Algorithm {
 
         for (int j = low; j < high; j++) {
             iterationCount++;
-            notifyObserver();
 
             if (compare(elements.get(j), pivot)) {
                 i++;
                 swap(i, j);
             }
+            notifyObserver();
         }
 
         swap(i + 1, high);
-        iterationCount++;
-        notifyObserver();
         return i + 1;
     }
 }

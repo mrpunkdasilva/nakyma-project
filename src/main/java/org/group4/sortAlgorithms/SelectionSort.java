@@ -38,6 +38,7 @@ public class SelectionSort extends Algorithm {
             for (int j = i + 1; j < n; j++) {
                 if (!compare(elements.get(minIndex), elements.get(j))) {
                     minIndex = j;
+                    notifyObserver();
                 }
             }
 

@@ -38,10 +38,10 @@ public class BubbleSort extends Algorithm {
 
             for (int j = 0; j < n - i - 1; j++) {
                 if (!compare(elements.get(j), elements.get(j + 1))) {
+                    notifyObserver();
                     swap(j, j + 1);
                     swapped = true;
 
-                    notifyObserver();
                 }
 
                 iterationCount++;
