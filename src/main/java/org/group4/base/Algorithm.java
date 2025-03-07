@@ -91,7 +91,7 @@ public abstract class Algorithm {
      * Displays the current state of the algorithm, including the iteration count and the current elements.
      */
     public void displayCurrentState() {
-        mercury.showMessage("Iteration [" + iterationCount + "] : ");
+        mercury.showMessage("Iteration [" + (iterationCount - 1) + "] : ");
         displayCurrentList();
         try {
             Thread.sleep(iterationTime);
