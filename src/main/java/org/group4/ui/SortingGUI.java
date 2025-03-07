@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.List;
 
 public class SortingGUI extends JPanel {
-    private int[] array;
+    private List<String> array; // Lista de strings (pode conter números ou caracteres)
     private Color[] colors;
     private Algorithm algorithm;
     private int delay; // Velocidade de execução (em milissegundos)
@@ -23,9 +23,9 @@ public class SortingGUI extends JPanel {
         setPreferredSize(new Dimension(800, 600));
         setBackground(Color.WHITE);
 
-        // Converte a lista de strings para um array de inteiros
-        this.array = inputList.stream().mapToInt(Integer::parseInt).toArray();
-        this.colors = new Color[array.length];
+        // Usa a lista de strings diretamente
+        this.array = inputList;
+        this.colors = new Color[array.size()];
         for (int i = 0; i < colors.length; i++) {
             colors[i] = Color.BLUE; // Cor inicial das barras
         }
@@ -36,48 +36,64 @@ public class SortingGUI extends JPanel {
         super.paintComponent(g);
         int width = getWidth();
         int height = getHeight();
-        int barWidth = width / array.length;
+        int barWidth = width / array.size();
 
-        // Encontra o valor máximo no array
-        int maxValue = 0;
-        for (int value : array) {
-            if (value > maxValue) {
-                maxValue = value;
-            }
-        }
+        // Encontra o valor máximo no array (tratando strings como números ou caracteres)
+        double maxValue = array.stream()
+                .mapToDouble(this::getNumericValue)
+                .max()
+                .orElse(1.0); // Valor padrão para evitar divisão por zero
 
         // Define uma altura mínima para as barras (por exemplo, 10 pixels)
         int minBarHeight = 10;
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.size(); i++) {
             // Calcula a altura da barra como uma proporção do valor máximo
-            int barHeight = (int) (((double) array[i] / maxValue) * (height - minBarHeight)) + minBarHeight;
+            double value = getNumericValue(array.get(i));
+            int barHeight = (int) ((value / maxValue) * (height - minBarHeight)) + minBarHeight;
+
             g.setColor(colors[i]);
             g.fillRect(i * barWidth, height - barHeight, barWidth - 2, barHeight);
         }
     }
 
+    /**
+     * Converte uma string em um valor numérico.
+     * Se a string for um número, retorna o valor numérico.
+     * Caso contrário, retorna o valor ASCII do primeiro caractere.
+     *
+     * @param value A string a ser convertida.
+     * @return O valor numérico correspondente.
+     */
+    private double getNumericValue(String value) {
+        try {
+            return Double.parseDouble(value); // Tenta converter para número
+        } catch (NumberFormatException e) {
+            return value.charAt(0); // Se falhar, usa o valor ASCII do primeiro caractere
+        }
+    }
+
     public void startSorting() {
         new Thread(() -> {
-//            algorithm.sort(this); // Passa o array e a referência para o SortingGUI
+            algorithm.sort(this);
             repaint();
         }).start();
     }
 
-    public void updateArray(int[] newArray, int index1, int index2) {
-        array = newArray.clone();
-        colors[index1] = Color.RED; // Destaca o primeiro elemento
-        colors[index2] = Color.RED; // Destaca o segundo elemento
+    public void updateArray(List<String> newList, int index1, int index2) {
+        array = newList;
+        colors[index1] = Color.RED;
+        colors[index2] = Color.RED;
         repaint();
 
         try {
-            Thread.sleep(delay); // Adiciona um atraso para visualização
+            Thread.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        colors[index1] = Color.BLUE; // Restaura a cor do primeiro elemento
-        colors[index2] = Color.BLUE; // Restaura a cor do segundo elemento
+        colors[index1] = Color.BLUE;
+        colors[index2] = Color.BLUE;
         repaint();
     }
 

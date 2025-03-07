@@ -2,6 +2,7 @@ package org.group4.sortAlgorithms;
 
 import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
+import org.group4.ui.SortingGUI;
 
 public class SelectionSort extends Algorithm {
 
@@ -19,10 +20,9 @@ public class SelectionSort extends Algorithm {
      * Prints the original list and the sorted list after execution.
      */
     @Override
-    public void sort() {
-        displayOriginalList();
+    public void sort(SortingGUI visualizer) {
+        this.visualizer = visualizer;
         selectionSort();
-        displaySortedArray();
     }
 
     /**
@@ -30,20 +30,21 @@ public class SelectionSort extends Algorithm {
      * Finds the smallest element and swaps it with the first unsorted position.
      */
     private void selectionSort() {
-        int n = elements.size();
+        int totalElements = elements.size();
 
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
+        for (int currentIndex = 0; currentIndex < totalElements - 1; currentIndex++) {
+            int minIndex = currentIndex;
 
-            for (int j = i + 1; j < n; j++) {
-                if (!compare(elements.get(minIndex), elements.get(j))) {
-                    minIndex = j;
-                    notifyObserver();
+            for (int nextIndex = currentIndex + 1; nextIndex < totalElements; nextIndex++) {
+                if (!compare(elements.get(minIndex), elements.get(nextIndex))) {
+                    minIndex = nextIndex;
                 }
+                notifyObserver();
             }
 
-            if (minIndex != i) {
-                swap(i, minIndex);
+            if (minIndex != currentIndex) {
+                swap(currentIndex, minIndex);
+                visualizer.updateArray(elements, currentIndex, minIndex);
             }
 
             iterationCount++;

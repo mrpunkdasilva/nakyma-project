@@ -2,6 +2,7 @@ package org.group4.sortAlgorithms;
 
 import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
+import org.group4.ui.SortingGUI;
 
 public class BubbleSort extends Algorithm {
 
@@ -19,10 +20,9 @@ public class BubbleSort extends Algorithm {
      * Prints the original list and the sorted list after execution.
      */
     @Override
-    public void sort() {
-        displayOriginalList();
+    public void sort(SortingGUI visualizer) {
+        this.visualizer = visualizer;
         bubbleSort();
-        displaySortedArray();
     }
 
     /**
@@ -38,13 +38,13 @@ public class BubbleSort extends Algorithm {
 
             for (int j = 0; j < n - i - 1; j++) {
                 if (!compare(elements.get(j), elements.get(j + 1))) {
-                    notifyObserver();
                     swap(j, j + 1);
                     swapped = true;
-
                 }
 
                 iterationCount++;
+                notifyObserver();
+                visualizer.updateArray(elements, j, j + 1);
             }
 
             if (!swapped) break;

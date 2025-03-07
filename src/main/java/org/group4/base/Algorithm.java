@@ -1,6 +1,7 @@
 package org.group4.base;
 
 import org.group4.config.AlgorithmConfigs;
+import org.group4.ui.SortingGUI;
 import org.group4.utils.Mercury;
 import org.group4.values.AsciiColor;
 
@@ -22,6 +23,7 @@ public abstract class Algorithm {
     public void setObserver(IObserver observer) {
         this.observer = observer;
     }
+
     /**
      * Notifies the observer of the algorithm's current state.
      */
@@ -59,7 +61,10 @@ public abstract class Algorithm {
 
     protected final boolean isNumeric;
 
-    
+
+    protected SortingGUI visualizer;
+
+
     /**
      * Constructs an instance of the Algorithm class.
      */
@@ -70,7 +75,10 @@ public abstract class Algorithm {
         this.isNumeric = algorithmConfigs.isNumeric();
     }
 
-    public abstract void sort();
+    public void setVisualizer(SortingGUI visualizer) {
+        this.visualizer = visualizer;
+    }
+    public abstract void sort(SortingGUI visualizer);
 
     /**
      * Displays the sorted elements of strings.
