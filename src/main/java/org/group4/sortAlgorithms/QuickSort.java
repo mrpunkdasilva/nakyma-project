@@ -4,36 +4,23 @@ import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
 import org.group4.ui.SortingGUI;
 
+import java.util.List;
+
 public class QuickSort extends Algorithm {
 
-    /**
-     * Constructor for the QuickSort class.
-     *
-     * @param algorithmConfigs Configuration settings for the algorithm
-     */
     public QuickSort(AlgorithmConfigs algorithmConfigs) {
         super(algorithmConfigs);
     }
 
-    /**
-     * Sorts the elements using the QuickSort algorithm.
-     * Prints the original list and the sorted list after execution.
-     */
     @Override
     public void sort(SortingGUI visualizer) {
         this.visualizer = visualizer;
-        quickSort(0, elements.size() - 1);
+        for (int i = 0; i < 1; i++) {
+            quickSort(0, elements.size() - 1);
+        }
     }
 
-    /**
-     * Implements the main recursive logic of QuickSort.
-     * Sorts the subarray between the low and high indexes.
-     *
-     * @param low  Initial index of the subarray
-     * @param high Final index of the subarray
-     */
     private void quickSort(int low, int high) {
-
         if (low < high) {
             int pivotIndex = partition(low, high);
             quickSort(low, pivotIndex - 1);
@@ -41,33 +28,23 @@ public class QuickSort extends Algorithm {
         }
     }
 
-    /**
-     * Partitions the subarray around a pivot.
-     * Rearranges the elements so that all those smaller than the pivot are on the left,
-     * and all the larger ones on the right.
-     *
-     * @param low  Initial index of the subarray
-     * @param high Final index of the subarray
-     * @return Final index of the pivot after partitioning
-     */
     private int partition(int low, int high) {
         String pivot = elements.get(high);
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-
+            iterationCount++;
             if (compare(elements.get(j), pivot)) {
                 i++;
                 swap(i, j);
                 notifyObserver();
-                visualizer.updateArray(elements, j, j + 1);
+                visualizer.updateArray(elements, i, j + 1);
             }
-
         }
 
-        iterationCount++;
-        notifyObserver();
         swap(i + 1, high);
+        notifyObserver();
         return i + 1;
     }
+
 }
