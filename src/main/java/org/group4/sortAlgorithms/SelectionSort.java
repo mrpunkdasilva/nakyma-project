@@ -6,29 +6,16 @@ import org.group4.ui.SortingGUI;
 
 public class SelectionSort extends Algorithm {
 
-    /**
-     * Constructor for the SelectionSort class.
-     *
-     * @param algorithmConfigs Configuration settings for the algorithm.
-     */
     public SelectionSort(AlgorithmConfigs algorithmConfigs) {
         super(algorithmConfigs);
     }
 
-    /**
-     * Sorts the elements using the Selection Sort algorithm.
-     * Prints the original list and the sorted list after execution.
-     */
     @Override
     public void sort(SortingGUI visualizer) {
-        this.visualizer = visualizer;
+        setVisualizer(visualizer);
         selectionSort();
     }
 
-    /**
-     * Implements the Selection Sort algorithm.
-     * Finds the smallest element and swaps it with the first unsorted position.
-     */
     private void selectionSort() {
         int totalElements = elements.size();
 
@@ -36,7 +23,7 @@ public class SelectionSort extends Algorithm {
             int minIndex = currentIndex;
 
             for (int nextIndex = currentIndex + 1; nextIndex < totalElements; nextIndex++) {
-                if (!compare(elements.get(minIndex), elements.get(nextIndex))) {
+                if (shouldSwap(minIndex, nextIndex)) {
                     minIndex = nextIndex;
                 }
                 notifyObserver();
@@ -50,5 +37,9 @@ public class SelectionSort extends Algorithm {
             iterationCount++;
             notifyObserver();
         }
+    }
+
+    private boolean shouldSwap(int currentMin, int candidate) {
+        return !compare(elements.get(currentMin), elements.get(candidate));
     }
 }
