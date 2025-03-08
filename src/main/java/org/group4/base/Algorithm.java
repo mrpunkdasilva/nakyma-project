@@ -59,7 +59,7 @@ public abstract class Algorithm {
      */
     protected Mercury mercury = new Mercury();
 
-    protected final boolean isNumeric;
+    protected boolean isNumeric;
 
 
     protected SortingGUI visualizer;
@@ -78,6 +78,7 @@ public abstract class Algorithm {
     public void setVisualizer(SortingGUI visualizer) {
         this.visualizer = visualizer;
     }
+
     public abstract void sort(SortingGUI visualizer);
 
     /**
@@ -108,15 +109,20 @@ public abstract class Algorithm {
      * @return true if 'a' should come before 'b' in the current ordering
      */
     protected boolean compare(String a, String b) {
+        // Se estamos lidando com números
         if (isNumeric) {
-            int numA = Integer.parseInt(a);
-            int numB = Integer.parseInt(b);
-            return isAscending == (numA <= numB);
+            try {
+                int numA = Integer.parseInt(a);
+                int numB = Integer.parseInt(b);
+                return isAscending ? numA < numB : numA > numB;
+            } catch (NumberFormatException e) {
+                // Se a conversão falhar, trate como strings
+                isNumeric = false; // Mude o estado para não numérico
+            }
         }
 
-        if (isAscending) return a.compareTo(b) < 0;
-
-        return a.compareTo(b) > 0;
+        // Se estamos lidando com letras
+        return isAscending ? a.compareTo(b) < 0 : a.compareTo(b) > 0;
     }
 
     /**
@@ -130,7 +136,7 @@ public abstract class Algorithm {
         elements.set(i, elements.get(j));
         elements.set(j, temp);
     }
-    
+
     /**
      * Displays the original list of strings before sorting.
      *
@@ -162,8 +168,7 @@ public abstract class Algorithm {
                 System.out.printf("[%d]:\t%s %s\n", row++, getElementFormated(count), element);
             }
 
-        }
-        else {
+        } else {
             List<Integer> charValues = elements.stream()
                     .map(element -> mapCharToValue(element.charAt(0))) // Mapeia o primeiro caractere
                     .toList();
@@ -176,7 +181,7 @@ public abstract class Algorithm {
             for (String element : elements) {
                 char ch = element.charAt(0);
                 int pos = mapCharToValue(ch) - min + 1;
-                int count = randomNumberCount((float)pos, (float)range);
+                int count = randomNumberCount((float) pos, (float) range);
                 System.out.printf("[%d]:\t%s %s\n", row++, getElementFormated(count), element);
             }
 

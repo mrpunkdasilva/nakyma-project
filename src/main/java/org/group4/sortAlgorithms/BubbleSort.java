@@ -4,6 +4,11 @@ import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
 import org.group4.ui.SortingGUI;
 
+/**
+ * The BubbleSort class is an implementation of the Bubble Sort algorithm, which is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
+ *
+ * @author Chavinho
+ */
 public class BubbleSort extends Algorithm {
 
     /**
@@ -18,6 +23,8 @@ public class BubbleSort extends Algorithm {
     /**
      * Sorts the elements using the Bubble Sort algorithm.
      * Prints the original list and the sorted list after execution.
+     *
+     * @param visualizer the sorting visualizer
      */
     @Override
     public void sort(SortingGUI visualizer) {
