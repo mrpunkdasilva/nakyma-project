@@ -26,7 +26,6 @@ public class SelectionSort extends Algorithm {
                 if (shouldSwap(minIndex, nextIndex)) {
                     minIndex = nextIndex;
                 }
-                notifyObserver();
             }
 
             if (minIndex != currentIndex) {
