@@ -61,27 +61,6 @@ public class VisionRenderer implements IVisionRenderer {
         renderPressStart();
     }
 
-    /**
-     * Renders the visualizer for the sorting algorithm.
-     * It first renders the header, then calls the method to render the specific sorting visualizer.
-     */
-    public void renderVisualizer() {
-        renderHeader();
-        renderSortingVisualizer();
-    }
-
-    /**
-     * Renders the sorting visualizer based on the type of the input list (character or integer).
-     */
-    public void renderSortingVisualizer() {
-        if (configs.typeList().equalsIgnoreCase("c")) {
-            Character[] charArray = listHandler.toCharArray(configs.inputList());
-            new SortingVisualizer<>(charArray, configs.s()).draw();
-        } else {
-            Integer[] intArray = listHandler.toIntArray(configs.inputList());
-            new SortingVisualizer<>(intArray, configs.s()).draw();
-        }
-    }
 
     /**
      * Renders the header of the visualization table.
