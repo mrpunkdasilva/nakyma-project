@@ -16,28 +16,35 @@ public class Aengus {
      * @param location The path to the music file.
      * @param loopCount The number of times to repeat the music (-1 for infinite loop).
      */
-    public static void playMusic(String location, int loopCount) {
-        try {
-            File musicFile = new File(location);
-            if (musicFile.exists()) {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(musicFile);
-                clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-                volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+   public static void playMusic(String location, int loopCount) {
+    try {
+        File musicFile = new File(location);
+        if (musicFile.exists()) {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(musicFile);
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
 
-                clip.loop(loopCount);  // Loop the audio (-1 for infinite)
-                clip.start();
-                isPlaying = true;
+            // Configura o controle de volume
+            volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
-                // Wait until the music ends
-                clip.isActive();
-            } else {
-                mercury.showError("Música não encontrada.");
-            }
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-            System.out.println(e.getMessage());
+            // Define o volume inicial como baixo (-20.0f é um exemplo de volume baixo)
+            float initialVolume = -20.0f; // Ajuste este valor conforme necessário
+            volumeControl.setValue(initialVolume);
+
+            // Reproduz a música
+            clip.loop(loopCount);  // Loop the audio (-1 for infinite)
+            clip.start();
+            isPlaying = true;
+
+            // Espera até que a música termine
+            clip.isActive();
+        } else {
+            mercury.showError("Música não encontrada.");
         }
+    } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        System.out.println(e.getMessage());
     }
+}
 
 
     /**
@@ -80,7 +87,7 @@ public class Aengus {
     public static void adjustVolume(float volume) {
         if (volumeControl != null) {
             // Clip volume is represented between -80.0f (silent) and 6.0206f (maximum volume)
-            float newVolume = volume * volumeControl.getMaximum();
+            float newVolume = volume;
             volumeControl.setValue(newVolume);
         }
     }
