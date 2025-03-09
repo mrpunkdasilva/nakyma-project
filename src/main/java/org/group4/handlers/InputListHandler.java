@@ -95,6 +95,7 @@ public class InputListHandler {
                     int value = Integer.parseInt(item.trim());
                     if (value >= Rules.MIN_VALUE.getInt() && value <= Rules.MAX_VALUE.getInt()) {
                         this.listAsString.add(Integer.toString(value));
+                        this.listAsInteger.add(value);
                         return true;
                     } else {
                         return false;

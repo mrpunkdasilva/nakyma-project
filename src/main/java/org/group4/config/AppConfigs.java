@@ -27,4 +27,11 @@ public record AppConfigs(String a, String typeList, String o, String in, int r, 
     public String getTypeListName() {
         return typeList.equalsIgnoreCase("c")? "Caracter" : "Inteiro";
     }
+    public String getSortAlgorithm() { return a; }
+    public String getTypeList() { return typeList; }
+    public String getSortingOrder() { return o; }
+    public String getSourceList() { return in; }
+    public int getRandomLengthList() { return r; }
+    public List<String> getInputList() { return inputList; }
+    public int getIterationTime() { return s; }
 }
