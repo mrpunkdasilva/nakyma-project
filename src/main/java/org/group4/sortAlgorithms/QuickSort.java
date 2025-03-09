@@ -55,7 +55,7 @@ public class QuickSort extends Algorithm {
      * @param high the higher index of the range
      * @return the index of the pivot element
      */
-    private int partition(int low, int high) {
+    public int partition(int low, int high) {
         String pivot = elements.get(high);
         int i = low - 1;
 

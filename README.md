@@ -4,7 +4,7 @@
 The Sorting Algorithm Viewer (SAV) is a Java application that implements sorting algorithms, allowing step-by-step visualization of each iteration through graphics represented by asterisks.
 
 
-> Documentation: [veja aqui](https://gitlab.com/jala-university1/cohort-4/oficial-pt-programa-o-2-cspr-124.ga.t1.25.m1/se-o-c/group-4/docs/-/blob/main/pdfSourceD.pdf?ref_type=heads)
+> Documentation: [click here](https://gitlab.com/jala-university1/cohort-4/oficial-pt-programa-o-2-cspr-124.ga.t1.25.m1/se-o-c/group-4/docs/-/blob/main/pdfSourceD.pdf?ref_type=heads)
 
 
 # Features

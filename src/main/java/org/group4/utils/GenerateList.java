@@ -39,8 +39,10 @@ public class GenerateList {
     private String makeList() {
       if (typeList.equalsIgnoreCase(Rules.CHARACTERS.getText())) {
           return generateCharacters();
-      } else {
+      } else if (typeList.equalsIgnoreCase(Rules.NUMERIC.getText())){
           return generateNumbers();
+      } else {
+          return "";
       }
     }
 

@@ -233,4 +233,11 @@ public abstract class Algorithm {
         return -1; // Caso não seja uma letra (opcional)
     }
 
+    public void setElements(List<String> elements) {
+        this.elements = elements;
+    }
+
+    public List<String> getElements() {
+        return elements;
+    };
 }

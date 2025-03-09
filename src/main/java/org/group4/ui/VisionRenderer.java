@@ -35,7 +35,6 @@ public class VisionRenderer implements IVisionRenderer {
      */
     @Override
     public void renderPressStart() {
-        Aengus.adjustVolume(0.5f);
         stopAndPlayMusic("src/main/resources/loading.wav", -1);
         mercury.showMessage("\n\n" + AsciiColor.applyMultiple(Texts.PRESS_ENTER.getText(), AsciiColor.ITALIC, AsciiColor.YELLOW));
         scanner.nextLine();
