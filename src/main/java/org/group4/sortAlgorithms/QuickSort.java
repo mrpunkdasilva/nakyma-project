@@ -7,8 +7,6 @@ import org.group4.ui.SortingGUI;
 
 /**
  * The QuickSort class is an implementation of the QuickSort algorithm, which is a divide-and-conquer algorithm for sorting an array.
- *
- * @author Chavinho
  */
 public class QuickSort extends Algorithm {
 
