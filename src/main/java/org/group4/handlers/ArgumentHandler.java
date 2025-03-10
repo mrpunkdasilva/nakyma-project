@@ -51,10 +51,12 @@ public class ArgumentHandler implements IArgumentHandler {
             mercury.showError(Texts.ERR_ORDER.getText());
         }
 
-        if (!validate.validateSourceListValues(getArgumentByKey("in"))) {
+        String inputSource = getArgumentByKey("in").isEmpty() ? "r" : getArgumentByKey("in");
+
+        if (!validate.validateSourceListValues(inputSource)) {
             mercury.showError(Texts.ERR_SOURCE_LIST.getText());
         } else {
-            switch(getArgumentByKey("in")) {
+            switch(inputSource) {
                 case "m" -> {
                     if (!validate.validateUserInput(getArgumentByKey("v"), getArgumentByKey("t"))) {
                         mercury.showError(Texts.ERR_INPUT_USER_LIST.getText());
