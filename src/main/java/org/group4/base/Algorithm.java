@@ -114,7 +114,7 @@ public abstract class Algorithm {
             try {
                 int numA = Integer.parseInt(a);
                 int numB = Integer.parseInt(b);
-                return isAscending ? numA < numB : numA > numB;
+                return isAscending ? numA <= numB : numA >= numB;
             } catch (NumberFormatException e) {
                 // Se a conversão falhar, trate como strings
                 isNumeric = false; // Mude o estado para não numérico

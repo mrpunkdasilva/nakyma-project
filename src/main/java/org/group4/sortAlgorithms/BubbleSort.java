@@ -47,11 +47,11 @@ public class BubbleSort extends Algorithm {
                 if (!compare(elements.get(j), elements.get(j + 1))) {
                     swap(j, j + 1);
                     swapped = true;
-                }
 
-                iterationCount++;
-                notifyObserver();
-                visualizer.updateArray(elements, j, j + 1);
+                    iterationCount++;
+                    notifyObserver();
+                    visualizer.updateArray(elements, j, j + 1);
+                }
             }
 
             if (!swapped) break;
