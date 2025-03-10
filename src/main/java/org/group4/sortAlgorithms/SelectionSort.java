@@ -6,8 +6,6 @@ import org.group4.ui.SortingGUI;
 
 /**
  * The SelectionSort class is an implementation of the Selection Sort algorithm, which is a simple sorting algorithm that works by repeatedly finding the minimum element from the unsorted part of the array and swapping it with the first element of the unsorted part.
- *
- * @author Chavinho
  */
 public class SelectionSort extends Algorithm {
 
