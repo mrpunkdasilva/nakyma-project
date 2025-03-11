@@ -6,6 +6,8 @@ import org.group4.ui.SortingGUI;
 
 /**
  * The BubbleSort class is an implementation of the Bubble Sort algorithm, which is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
+ *
+ * @author Chavinho
  */
 public class BubbleSort extends Algorithm {
 
@@ -45,11 +47,11 @@ public class BubbleSort extends Algorithm {
                 if (!compare(elements.get(j), elements.get(j + 1))) {
                     swap(j, j + 1);
                     swapped = true;
-
-                    iterationCount++;
-                    notifyObserver();
-                    visualizer.updateArray(elements, j, j + 1);
                 }
+
+                iterationCount++;
+                notifyObserver();
+                visualizer.updateArray(elements, j, j + 1);
             }
 
             if (!swapped) break;

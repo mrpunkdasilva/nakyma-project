@@ -4,15 +4,18 @@ import org.group4.base.Algorithm;
 import org.group4.config.AlgorithmConfigs;
 import org.group4.ui.SortingGUI;
 
+
 /**
- * QuickSort implementation with proper partitioning and recursive sorting.
+ * The QuickSort class is an implementation of the QuickSort algorithm, which is a divide-and-conquer algorithm for sorting an array.
+ *
+ * @author Chavinho
  */
 public class QuickSort extends Algorithm {
 
     /**
-     * Constructor for QuickSort.
+     * Constructs a new instance of the QuickSort class with the given algorithm configurations.
      *
-     * @param algorithmConfigs Configuration for the sorting algorithm
+     * @param algorithmConfigs the algorithm configurations
      */
     public QuickSort(AlgorithmConfigs algorithmConfigs) {
         super(algorithmConfigs);
@@ -26,36 +29,33 @@ public class QuickSort extends Algorithm {
     @Override
     public void sort(SortingGUI visualizer) {
         this.visualizer = visualizer;
-        if (elements == null || elements.isEmpty()) {
-            return;
+        for (int i = 0; i < elements.size(); i++) {
+            quickSort(0, elements.size() - 1);
         }
-        quickSort(0, elements.size() - 1);
     }
 
     /**
-     * Recursive QuickSort function.
+     * Recursively applies the QuickSort algorithm to the given range of elements.
      *
-     * @param low  Starting index
-     * @param high Ending index
+     * @param low the lower index of the range
+     * @param high the higher index of the range
      */
     private void quickSort(int low, int high) {
         if (low < high) {
-            int pivotIndex = medianOfThree(low, high);
-            swap(pivotIndex, high);
-            pivotIndex = partition(low, high);
+            int pivotIndex = partition(low, high);
             quickSort(low, pivotIndex - 1);
             quickSort(pivotIndex + 1, high);
         }
     }
 
     /**
-     * Partitions the array around a pivot element and returns its final position.
+     * Partitions the elements around a pivot element and returns the index of the pivot.
      *
-     * @param low  Starting index
-     * @param high Ending index
-     * @return The final pivot position
+     * @param low the lower index of the range
+     * @param high the higher index of the range
+     * @return the index of the pivot element
      */
-    private int partition(int low, int high) {
+    public int partition(int low, int high) {
         String pivot = elements.get(high);
         int i = low - 1;
 
@@ -63,39 +63,14 @@ public class QuickSort extends Algorithm {
             iterationCount++;
             if (compare(elements.get(j), pivot)) {
                 i++;
-                if (i != j) {
-                    swap(i, j);
-                    notifyObserver();
-                    visualizer.updateArray(elements, i, j);
-                }
+                swap(i, j);
+                notifyObserver();
+                visualizer.updateArray(elements, j, j + 1);
             }
         }
 
         swap(i + 1, high);
         notifyObserver();
-        visualizer.updateArray(elements, i + 1, high);
         return i + 1;
-    }
-
-    /**
-     * Selects the pivot using the median-of-three method.
-     *
-     * @param low the lower index of the range
-     * @param high the higher index of the range
-     * @return the index of the median element
-     */
-    private int medianOfThree(int low, int high) {
-        int mid = low + (high - low) / 2;
-        String a = elements.get(low);
-        String b = elements.get(mid);
-        String c = elements.get(high);
-
-        if ((a.compareTo(b) < 0 && b.compareTo(c) < 0) || (c.compareTo(b) < 0 && b.compareTo(a) < 0)) {
-            return mid;
-        } else if ((b.compareTo(a) < 0 && a.compareTo(c) < 0) || (c.compareTo(a) < 0 && a.compareTo(b) < 0)) {
-            return low;
-        } else {
-            return high;
-        }
     }
 }
