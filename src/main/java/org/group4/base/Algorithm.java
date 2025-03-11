@@ -92,7 +92,7 @@ public abstract class Algorithm {
      * Displays the current state of the algorithm, including the iteration count and the current elements.
      */
     public void displayCurrentState() {
-        mercury.showMessage("Iteration [" + (iterationCount - 1) + "] : ");
+        mercury.showMessage("Iteration [" + iterationCount + "] : ");
         displayCurrentList();
         try {
             Thread.sleep(iterationTime);
@@ -122,7 +122,7 @@ public abstract class Algorithm {
         }
 
         // Se estamos lidando com letras
-        return isAscending ? a.compareTo(b) < 0 : a.compareTo(b) > 0;
+        return isAscending ? a.compareTo(b) <= 0 : a.compareTo(b) >= 0;
     }
 
     /**

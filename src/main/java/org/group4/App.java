@@ -139,7 +139,7 @@ public class App {
         algorithm.setObserver(observer);
         algorithmConfigs.setSortingGUI(sortingGUI);
 
-        algorithm.sort(sortingGUI);
+//        algorithm.sort(sortingGUI);
     }
 
     public void startGUI() {
