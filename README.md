@@ -11,7 +11,7 @@ This project is a Java-based application for visualizing various sorting algorit
 
 ## How to Build and Run
 
-To build the project, navigate to the root directory (`sav-project`) and run:
+To build the project, navigate to the root directory (`nakyma-project`) and run:
 
 ```bash
 mvn clean install
