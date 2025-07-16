@@ -1,7 +1,7 @@
-package org.group4.sortAlgorithms;
+package org.punkdomus.sortAlgorithms;
 
-import org.group4.config.AlgorithmConfigs;
-import org.group4.ui.SortingGUI;
+import org.punkdomus.config.AlgorithmConfigs;
+import org.punkdomus.ui.SortingGUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

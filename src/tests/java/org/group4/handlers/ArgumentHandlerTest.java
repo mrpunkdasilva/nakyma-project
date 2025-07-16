@@ -1,9 +1,9 @@
-package org.group4.handlers;
+package org.punkdomus.handlers;
 
-import org.group4.config.AppConfigs;
-import org.group4.utils.GenerateList;
-import org.group4.utils.Mercury;
-import org.group4.values.Texts;
+import org.punkdomus.config.AppConfigs;
+import org.punkdomus.utils.GenerateList;
+import org.punkdomus.utils.Mercury;
+import org.punkdomus.values.Texts;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

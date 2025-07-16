@@ -1,4 +1,4 @@
-package org.group4.utils;
+package org.punkdomus.utils;
 
 
 import org.junit.jupiter.api.Test;

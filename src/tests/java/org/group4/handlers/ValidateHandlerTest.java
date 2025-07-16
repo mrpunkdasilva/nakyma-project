@@ -1,6 +1,6 @@
-package org.group4.handlers;
+package org.punkdomus.handlers;
 
-import org.group4.utils.Mercury;
+import org.punkdomus.utils.Mercury;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;

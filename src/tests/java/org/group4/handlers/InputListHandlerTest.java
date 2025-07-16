@@ -1,4 +1,4 @@
-package org.group4.handlers;
+package org.punkdomus.handlers;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
