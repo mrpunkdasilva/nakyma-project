@@ -20,7 +20,7 @@ mvn clean install
 To run the application, execute the following command from the root directory:
 
 ```bash
-mvn exec:java -Dexec.mainClass="org.punkdomus.Main"
+mvn exec:java -Dexec.mainClass="org.com.Main"
 ```
 
 ## Features
