@@ -21,19 +21,20 @@ public class SortingGUI extends JPanel {
     public SortingGUI(List<String> inputList, int delay) {
         this.delay = delay;
         setPreferredSize(new Dimension(800, 600));
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
 
         // Usa a lista de strings diretamente
         this.array = inputList;
         this.colors = new Color[array.size()];
         for (int i = 0; i < colors.length; i++) {
-            colors[i] = Color.BLUE; // Cor inicial das barras
+            colors[i] = Color.CYAN; // Cor inicial das barras
         }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
         int width = getWidth();
         int height = getHeight();
         int barWidth = width / array.size();
@@ -52,9 +53,16 @@ public class SortingGUI extends JPanel {
             double value = getNumericValue(array.get(i));
             int barHeight = (int) ((value / maxValue) * (height - minBarHeight)) + minBarHeight;
 
-            g.setColor(colors[i]);
-            g.fillRect(i * barWidth, height - barHeight, barWidth - 2, barHeight);
+            // 3D effect
+            g2d.setColor(colors[i].darker());
+            g2d.fillRect(i * barWidth, height - barHeight, barWidth - 2, barHeight);
+            g2d.setColor(colors[i]);
+            g2d.fillRect(i * barWidth + 2, height - barHeight + 2, barWidth - 6, barHeight - 4);
         }
+
+        // Display operation count
+        g.setColor(Color.WHITE);
+        g.drawString("Operations: " + (algorithm != null ? algorithm.getOperationCount() : 0), 10, 20);
     }
 
     /**
@@ -75,8 +83,10 @@ public class SortingGUI extends JPanel {
 
     public void startSorting() {
         new Thread(() -> {
-            algorithm.sort(this);
-            repaint();
+            if (algorithm != null) {
+                algorithm.sort(this);
+                repaint();
+            }
         }).start();
     }
 
@@ -92,12 +102,16 @@ public class SortingGUI extends JPanel {
             e.printStackTrace();
         }
 
-        colors[index1] = Color.BLUE;
-        colors[index2] = Color.BLUE;
+        colors[index1] = Color.CYAN;
+        colors[index2] = Color.CYAN;
         repaint();
     }
 
     public void setAlgorithm(Algorithm algorithm) {
         this.algorithm = algorithm;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 }

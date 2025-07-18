@@ -1,5 +1,6 @@
 package org.com;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import org.com.base.Algorithm;
 import org.com.config.AlgorithmConfigs;
 import org.com.sortAlgorithms.BubbleSort;
@@ -13,7 +14,8 @@ import org.com.ui.VisionRenderer;
 import org.com.utils.Mercury;
 import org.com.values.Texts;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * The main application class. It initializes the necessary components and runs the application.
@@ -27,6 +29,9 @@ public class App {
     private AlgorithmConfigs algorithmConfigs;
     private Algorithm algorithm;
     private SortingGUI sortingGUI;
+    private JComboBox<String> algorithmComboBox;
+    private JSlider speedSlider;
+    private JButton startButton;
 
 
     /**
@@ -61,10 +66,7 @@ public class App {
 
         buildAlgorithmConfigs();
 
-        implementAlgorithm();
-
         startGUI();
-        startCLI();
     }
 
 
@@ -91,14 +93,35 @@ public class App {
     }
 
     private void initializeGUI() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
         JFrame frame = new JFrame(Texts.TITLE_APP.getText());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
 
         sortingGUI = new SortingGUI(configs.inputList(), configs.s());
-        sortingGUI.setAlgorithm(algorithm);
+        frame.add(sortingGUI, BorderLayout.CENTER);
 
-        frame.add(sortingGUI);
+        JPanel controlPanel = new JPanel();
+        algorithmComboBox = new JComboBox<>(new String[]{"QuickSort", "BubbleSort", "SelectionSort"});
+        speedSlider = new JSlider(0, 1000, configs.s());
+        startButton = new JButton("Start");
+
+        controlPanel.add(new JLabel("Algorithm:"));
+        controlPanel.add(algorithmComboBox);
+        controlPanel.add(new JLabel("Speed:"));
+        controlPanel.add(speedSlider);
+        controlPanel.add(startButton);
+
+        frame.add(controlPanel, BorderLayout.SOUTH);
+
+        startButton.addActionListener(e -> startSorting());
+
         frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
@@ -115,10 +138,11 @@ public class App {
      * @see SelectionSort
      */
     public void implementAlgorithm() {
-        algorithm = switch (configs.a()) {
-            case "q" -> new QuickSort(algorithmConfigs);
-            case "b" -> new BubbleSort(algorithmConfigs);
-            case "s" -> new SelectionSort(algorithmConfigs);
+        String selectedAlgorithm = (String) algorithmComboBox.getSelectedItem();
+        algorithm = switch (selectedAlgorithm) {
+            case "QuickSort" -> new QuickSort(algorithmConfigs);
+            case "BubbleSort" -> new BubbleSort(algorithmConfigs);
+            case "SelectionSort" -> new SelectionSort(algorithmConfigs);
             default -> null;
         };
 
@@ -134,16 +158,21 @@ public class App {
      * @see Algorithm
      * @see SortingObserver
      */
-    public void startCLI() {
+    public void startSorting() {
+        implementAlgorithm();
+        sortingGUI.setAlgorithm(algorithm);
+        sortingGUI.setDelay(speedSlider.getValue());
+
         SortingObserver observer = new SortingObserver(algorithm);
         algorithm.setObserver(observer);
         algorithmConfigs.setSortingGUI(sortingGUI);
 
-//        algorithm.sort(sortingGUI);
+        sortingGUI.startSorting();
     }
+
+
 
     public void startGUI() {
         initializeGUI();
-        sortingGUI.startSorting();
     }
 }

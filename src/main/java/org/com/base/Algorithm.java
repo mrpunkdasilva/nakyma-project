@@ -13,6 +13,7 @@ import java.util.List;
  */
 public abstract class Algorithm {
     private IObserver observer;
+    private int operationCount = 0;
 
     /**
      * Sets an observer to listen for updates in the algorithm's state.
@@ -109,6 +110,7 @@ public abstract class Algorithm {
      * @return true if 'a' should come before 'b' in the current ordering
      */
     protected boolean compare(String a, String b) {
+        incrementOperationCount();
         // Se estamos lidando com números
         if (isNumeric) {
             try {
@@ -132,6 +134,7 @@ public abstract class Algorithm {
      * @param j Second position
      */
     protected void swap(int i, int j) {
+        incrementOperationCount();
         String temp = elements.get(i);
         elements.set(i, elements.get(j));
         elements.set(j, temp);
@@ -239,5 +242,13 @@ public abstract class Algorithm {
 
     public List<String> getElements() {
         return elements;
-    };
+    }
+
+    public int getOperationCount() {
+        return operationCount;
+    }
+
+    public void incrementOperationCount() {
+        this.operationCount++;
+    }
 }
